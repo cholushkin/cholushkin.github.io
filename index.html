@@ -3,29 +3,40 @@ layout: default
 title: Home
 ---
 
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Dev hub</title>
-</head>
-<body>
-  <h1>📰 Blog</h1>
+# 📰 Blog
 
-  <h2>Latest Posts</h2>
+## 🆕 Latest Posts
+<ul>
+{% for post in site.posts limit:5 %}
+  <li>
+    <a href="{{ post.url }}">{{ post.title }}</a>
+    ({{ post.date | date: "%Y-%m-%d" }})
+  </li>
+{% endfor %}
+</ul>
 
-  <ul>
-    {% for post in site.posts %}
-        <li>
-          <a href="{{ post.url }}">{{ post.title }}</a>
-          ({{ post.date | date: "%Y-%m-%d" }})
-          —
-          {% for category in post.categories %}
-            <a href="/{{ category }}/">{{ category }}</a>
-          {% endfor %}
-        </li>
-    {% endfor %}
-  </ul>
+---
 
-</body>
-</html>
+## 💭 Thoughts
+<ul>
+{% for post in site.categories.thoughts limit:3 %}
+  <li>
+    <a href="{{ post.url }}">{{ post.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+<a href="/thoughts/">→ View all Thoughts</a>
+
+---
+
+## 🚀 Projects
+<ul>
+{% for post in site.categories.projects limit:3 %}
+  <li>
+    <a href="{{ post.url }}">{{ post.title }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+<a href="/projects/">→ View all Projects</a>
