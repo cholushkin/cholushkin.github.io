@@ -3,6 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
+  <p>
+  Categories:
+  {% for category in page.categories %}
+    <a href="/{{ category }}/">{{ category }}</a>
+  {% endfor %}
+  </p>
 </head>
 <body>
   <h1>{{ page.title }}</h1>

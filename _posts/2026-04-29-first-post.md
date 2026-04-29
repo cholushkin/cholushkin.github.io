@@ -2,6 +2,7 @@
 layout: default
 title: "My First Post"
 date: 2026-04-29
+categories: [thoughts, projects]
 ---
 
 # ✨ Blog Concept: Ideas, Thoughts & Builds
