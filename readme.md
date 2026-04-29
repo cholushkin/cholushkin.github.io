@@ -10,14 +10,13 @@ Posts are written in Markdown and organized with categories like **thoughts** an
 
 ## ✍️ How it works
 
-* Posts live in the `_posts/` folder as Markdown files
-* Categories are defined in frontmatter
-* Jekyll builds the site into static files
-* A small JavaScript layer adds:
-
-  * filtering by category
-  * pagination ("load more")
-  * dynamic post previews
+- Posts live in the `_posts/` folder as Markdown files
+- Categories are defined in frontmatter
+- Jekyll builds the site into static files
+- A small JavaScript layer adds:
+  - filtering by category
+  - pagination ("load more")
+  - dynamic post previews
 
 👉 No backend required — everything runs in the browser
 
