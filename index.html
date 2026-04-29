@@ -2,10 +2,21 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>My hub</title>
+  <title>Dev hub</title>
 </head>
 <body>
-  <h1>📰 My News Site</h1>
-  <p>It works. More coming soon.</p>
+  <h1>📰 Blog</h1>
+
+  <h2>Latest Posts</h2>
+
+  <ul>
+    {% for post in site.posts %}
+      <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <small>({{ post.date | date: "%Y-%m-%d" }})</small>
+      </li>
+    {% endfor %}
+  </ul>
+
 </body>
 </html>
