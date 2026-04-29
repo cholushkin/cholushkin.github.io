@@ -36,12 +36,22 @@
       text-decoration: underline;
     }
 
-    /* Markdown content styling */
+    /* Markdown content (GitHub-like) */
     .markdown-body {
       background: transparent;
     }
 
-    /* Filters (blog UI only) */
+    /* ✅ FIX: ensure markdown lists render correctly */
+    .markdown-body ul {
+      list-style: disc;
+      padding-left: 2em;
+    }
+
+    .markdown-body li {
+      margin: 0.4em 0;
+    }
+
+    /* Filters (UI only) */
     #filters button {
       border: 1px solid #ddd;
       background: #eee;
@@ -55,7 +65,6 @@
       background: #ddd;
     }
 
-    /* Active filter (JS-controlled) */
     #filters button.active {
       background: #ccc;
       font-weight: bold;
@@ -87,7 +96,6 @@
 
   <hr>
 
-  <!-- Markdown content wrapper -->
   <div class="markdown-body">
     {{ content }}
   </div>
