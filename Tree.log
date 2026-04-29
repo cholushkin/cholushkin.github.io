@@ -1,0 +1,245 @@
+Script: PrintTreeScript.py
+Parameters:
+  path = .
+  dirs_only = False
+  content_patterns = *.html;*.md
+  content_ignore_patterns = 
+  ignore_patterns = _posts;.git
+  log_level = 20
+  log_file = Tree.log
+Output:
+D:\projects\dev\cholushkin.github.io
+    _layouts
+        default.html
+        // --- Start File: D:\projects\dev\cholushkin.github.io\_layouts\default.html ---
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta charset="UTF-8">
+              <title>{{ page.title }}</title>
+                <style>
+                  body {
+                    font-family: system-ui, -apple-system, sans-serif;
+                    max-width: 800px;
+                    margin: 40px auto;
+                    padding: 0 16px;
+                    line-height: 1.6;
+                    background: #fafafa;
+                  }
+                  nav {
+                    margin-bottom: 20px;
+                  }
+                  nav a {
+                    margin-right: 12px;
+                    text-decoration: none;
+                    color: #333;
+                    font-weight: 500;
+                  }
+                  nav a:hover {
+                    text-decoration: underline;
+                  }
+                  h1, h2 {
+                    margin-top: 30px;
+                  }
+                  ul {
+                    list-style: none;
+                    padding: 0;
+                  }
+                  li {
+                    background: white;
+                    padding: 12px 16px;
+                    margin-bottom: 10px;
+                    border-radius: 8px;
+                    border: 1px solid #eee;
+                  }
+                  a {
+                    color: #0366d6;
+                  }
+                  small {
+                    color: #666;
+                  }
+                </style>
+            </head>
+            <body>
+            <nav>
+              <a href="/">Home</a> |
+              <a href="/thoughts/">Thoughts</a> |
+              <a href="/projects/">Projects</a>
+            </nav>
+            <hr>
+            {{ content }}
+            </body>
+            </html>
+        // --- End File: D:\projects\dev\cholushkin.github.io\_layouts\default.html ---
+        post.html
+        // --- Start File: D:\projects\dev\cholushkin.github.io\_layouts\post.html ---
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta charset="UTF-8">
+              <title>{{ page.title }}</title>
+              <style>
+                body {
+                  font-family: system-ui, -apple-system, sans-serif;
+                  max-width: 800px;
+                  margin: 40px auto;
+                  padding: 0 16px;
+                  line-height: 1.6;
+                  background: #fafafa;
+                }
+                nav {
+                  margin-bottom: 20px;
+                }
+                nav a {
+                  margin-right: 12px;
+                  text-decoration: none;
+                  color: #333;
+                  font-weight: 500;
+                }
+                nav a:hover {
+                  text-decoration: underline;
+                }
+                article {
+                  background: white;
+                  padding: 20px;
+                  border-radius: 10px;
+                  border: 1px solid #eee;
+                }
+                a {
+                  color: #0366d6;
+                }
+                small {
+                  color: #666;
+                }
+              </style>
+            </head>
+            <body>
+            <nav>
+              <a href="/">Home</a>
+              <a href="/thoughts/">Thoughts</a>
+              <a href="/projects/">Projects</a>
+            </nav>
+            <article>
+              <h1>{{ page.title }}</h1>
+              <p>
+                <small>
+                  {{ page.date | date: "%Y-%m-%d" }} —
+                  {% for category in page.categories %}
+                    <a href="/{{ category }}/">#{{ category }}</a>
+                  {% endfor %}
+                </small>
+              </p>
+              <hr>
+              {{ content }}
+            </article>
+            </body>
+            </html>
+        // --- End File: D:\projects\dev\cholushkin.github.io\_layouts\post.html ---
+    Tree.log
+    index.html
+    // --- Start File: D:\projects\dev\cholushkin.github.io\index.html ---
+        ---
+        layout: default
+        title: Home
+        ---
+        <h1>📰 Blog</h1>
+        <h2>🆕 Latest Posts</h2>
+        <ul>
+        {% for post in site.posts limit:5 %}
+          <li>
+            <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+            <small>{{ post.date | date: "%Y-%m-%d" }}</small><br>
+            {% for category in post.categories %}
+              <small><a href="/{{ category }}/">#{{ category }}</a></small>
+            {% endfor %}
+          </li>
+        {% endfor %}
+        </ul>
+        <hr>
+        <h2>💭 Thoughts</h2>
+        <ul>
+        {% for post in site.categories.thoughts limit:3 %}
+          <li>
+            <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+            {% for category in post.categories %}
+              <small><a href="/{{ category }}/">#{{ category }}</a></small>
+            {% endfor %}
+          </li>
+        {% endfor %}
+        </ul>
+        <p><a href="/thoughts/">→ View all Thoughts</a></p>
+        <hr>
+        <h2>🚀 Projects</h2>
+        <ul>
+        {% for post in site.categories.projects limit:3 %}
+          <li>
+            <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+            {% for category in post.categories %}
+              <small><a href="/{{ category }}/">#{{ category }}</a></small>
+            {% endfor %}
+          </li>
+        {% endfor %}
+        </ul>
+        <p><a href="/projects/">→ View all Projects</a></p>
+    // --- End File: D:\projects\dev\cholushkin.github.io\index.html ---
+    projects.md
+    // --- Start File: D:\projects\dev\cholushkin.github.io\projects.md ---
+        ---
+        layout: default
+        title: Projects
+        permalink: /projects/
+        ---
+        # Projects
+        <ul>
+        {% for post in site.categories.projects %}
+          <li>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            ({{ post.date | date: "%Y-%m-%d" }})
+          </li>
+        {% endfor %}
+        </ul>
+    // --- End File: D:\projects\dev\cholushkin.github.io\projects.md ---
+    readme.md
+    // --- Start File: D:\projects\dev\cholushkin.github.io\readme.md ---
+        # 📰 Blog
+        A minimal news-style blog built with Markdown and static generation using GitHub Pages.
+        Posts are written in Markdown and organized with categories like **thoughts** and **projects**, making it simple to manage content without a traditional CMS.
+        ## 🚀 Live Site
+        👉 https://cholushkin.github.io/
+        ## ✍️ How it works
+        * Posts live in the `_posts/` folder as Markdown files
+        * Categories are defined in frontmatter
+        * Jekyll automatically builds and groups content
+        * No backend required — fully static
+        ## 📂 Structure
+        ```
+        _posts/        # blog posts (Markdown)
+        _layouts/      # page layouts
+        index.md       # homepage
+        thoughts.md    # category page
+        projects.md    # category page
+        ```
+        ## 🧠 Goal
+        To create a simple, Git-based CMS-like blog system that is:
+        * easy to maintain
+        * fast
+        * fully static
+        ---
+    // --- End File: D:\projects\dev\cholushkin.github.io\readme.md ---
+    thoughts.md
+    // --- Start File: D:\projects\dev\cholushkin.github.io\thoughts.md ---
+        ---
+        layout: default
+        title: Thoughts
+        permalink: /thoughts/
+        ---
+        # Thoughts
+        <ul>
+        {% for post in site.categories.thoughts %}
+          <li>
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            ({{ post.date | date: "%Y-%m-%d" }})
+          </li>
+        {% endfor %}
+        </ul>
+    // --- End File: D:\projects\dev\cholushkin.github.io\thoughts.md ---

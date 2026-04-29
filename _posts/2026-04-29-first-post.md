@@ -25,6 +25,7 @@ Short posts capturing:
 > Think Twitter threads, but with room to breathe.
 
 ---
+<!--more-->
 
 ### 🚧 Projects & Updates
 

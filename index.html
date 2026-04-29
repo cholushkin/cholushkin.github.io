@@ -17,22 +17,28 @@ title: Home
   Load more
 </button>
 
-<!-- Jekyll → JS data -->
+<!-- Jekyll → JS -->
 <script>
-  const posts = [
-    {% for post in site.posts %}
-      {
-        title: "{{ post.title }}",
-        url: "{{ post.url }}",
-        date: "{{ post.date | date: "%Y-%m-%d" }}",
-        categories: {{ post.categories | jsonify }},
-        excerpt: "{{ post.excerpt | strip_newlines | escape }}"
-      }{% unless forloop.last %},{% endunless %}
-    {% endfor %}
-  ];
+const posts = [
+  {% for post in site.posts %}
+  {
+    title: {{ post.title | jsonify }},
+    url: "{{ post.url }}",
+    date: "{{ post.date | date: "%Y-%m-%d" }}",
+    categories: {{ post.categories | jsonify }},
+    excerpt: {{ post.content 
+      | split: '<!--more-->' 
+      | first 
+      | strip_html 
+      | strip_newlines 
+      | truncate: 160 
+      | jsonify }}
+  }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
 </script>
 
-<!-- App logic -->
+<!-- UI logic -->
 <script>
 let visibleCount = 10;
 let currentCategory = null;
@@ -51,17 +57,31 @@ function renderPosts() {
 
   visible.forEach(post => {
     const el = document.createElement("div");
+
     el.style.border = "1px solid #eee";
-    el.style.padding = "12px";
+    el.style.padding = "16px";
     el.style.marginBottom = "12px";
-    el.style.borderRadius = "8px";
+    el.style.borderRadius = "10px";
     el.style.background = "white";
 
     el.innerHTML = `
-      <a href="${post.url}"><strong>${post.title}</strong></a><br>
-      <small>${post.date}</small><br>
-      <p>${post.excerpt}</p>
-      ${post.categories.map(c => `<small>#${c}</small>`).join(" ")}
+      <a href="${post.url}" style="text-decoration:none;">
+        <h3 style="margin:0 0 6px 0;">${post.title}</h3>
+      </a>
+
+      <small style="color:#666;">${post.date}</small>
+
+      <p style="margin:10px 0;">
+        ${post.excerpt}
+      </p>
+
+      <div>
+        ${post.categories.map(c => `
+          <a href="#" onclick="setCategory('${c}')" style="margin-right:6px; font-size:12px;">
+            #${c}
+          </a>
+        `).join("")}
+      </div>
     `;
 
     container.appendChild(el);
