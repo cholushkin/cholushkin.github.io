@@ -8,6 +8,7 @@ categories: [thoughts, projects]
 # ✨ Blog Concept: Ideas, Thoughts & Builds
 
 A living space on the internet where thinking meets building.
+<!--more-->
 
 ---
 
@@ -25,7 +26,6 @@ Short posts capturing:
 > Think Twitter threads, but with room to breathe.
 
 ---
-<!--more-->
 
 ### 🚧 Projects & Updates
 

@@ -5,7 +5,7 @@ title: Home
 
 <h1>📰 Blog</h1>
 
-<div id="filters" class="filters">
+<div id="filters" style="margin-bottom: 20px;">
   <button onclick="setCategory(null)" id="filter-all">All</button>
   <button onclick="setCategory('thoughts')" id="filter-thoughts">Thoughts</button>
   <button onclick="setCategory('projects')" id="filter-projects">Projects</button>
@@ -45,13 +45,22 @@ let currentCategory = null;
 
 function setActiveButton() {
   const buttons = document.querySelectorAll("#filters button");
-  buttons.forEach(btn => btn.classList.remove("active"));
+
+  buttons.forEach(btn => {
+    btn.style.background = "#eee";
+    btn.style.fontWeight = "normal";
+  });
 
   if (!currentCategory) {
-    document.getElementById("filter-all").classList.add("active");
+    const btn = document.getElementById("filter-all");
+    btn.style.background = "#ddd";
+    btn.style.fontWeight = "bold";
   } else {
     const btn = document.getElementById("filter-" + currentCategory);
-    if (btn) btn.classList.add("active");
+    if (btn) {
+      btn.style.background = "#ddd";
+      btn.style.fontWeight = "bold";
+    }
   }
 }
 
@@ -75,7 +84,7 @@ function renderPosts() {
     el.style.marginBottom = "12px";
     el.style.borderRadius = "10px";
     el.style.background = "white";
-    el.style.cursor = "pointer"; 
+    el.style.cursor = "pointer";
 
     el.onclick = () => {
       window.location.href = post.url;
