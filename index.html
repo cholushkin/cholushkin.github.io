@@ -17,7 +17,6 @@ title: Home
   Load more
 </button>
 
-<!-- Jekyll → JS -->
 <script>
 const posts = [
   {% for post in site.posts %}
@@ -38,7 +37,6 @@ const posts = [
 ];
 </script>
 
-<!-- UI logic -->
 <script>
 let visibleCount = 10;
 let currentCategory = null;
@@ -46,21 +44,13 @@ let currentCategory = null;
 function setActiveButton() {
   const buttons = document.querySelectorAll("#filters button");
 
-  buttons.forEach(btn => {
-    btn.style.background = "#eee";
-    btn.style.fontWeight = "normal";
-  });
+  buttons.forEach(btn => btn.classList.remove("active"));
 
   if (!currentCategory) {
-    const btn = document.getElementById("filter-all");
-    btn.style.background = "#ddd";
-    btn.style.fontWeight = "bold";
+    document.getElementById("filter-all").classList.add("active");
   } else {
     const btn = document.getElementById("filter-" + currentCategory);
-    if (btn) {
-      btn.style.background = "#ddd";
-      btn.style.fontWeight = "bold";
-    }
+    if (btn) btn.classList.add("active");
   }
 }
 
@@ -92,7 +82,6 @@ function renderPosts() {
 
     el.innerHTML = `
       <h3 style="margin:0 0 6px 0;">${post.title}</h3>
-
       <small style="color:#666;">${post.date}</small>
 
       <div style="margin:10px 0; color:#333;">
@@ -124,6 +113,5 @@ function setCategory(cat) {
   renderPosts();
 }
 
-// initial render
 renderPosts();
 </script>
