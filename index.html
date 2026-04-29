@@ -5,50 +5,83 @@ title: Home
 
 <h1>📰 Blog</h1>
 
-<h2>🆕 Latest Posts</h2>
-<ul>
-{% for post in site.posts limit:5 %}
-  <li>
-    <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
-    <small>{{ post.date | date: "%Y-%m-%d" }}</small><br>
+<div id="filters" style="margin-bottom: 20px;">
+  <button onclick="setCategory(null)">All</button>
+  <button onclick="setCategory('thoughts')">Thoughts</button>
+  <button onclick="setCategory('projects')">Projects</button>
+</div>
 
-    {% for category in post.categories %}
-      <small><a href="/{{ category }}/">#{{ category }}</a></small>
+<div id="posts"></div>
+
+<button id="loadMore" onclick="loadMore()" style="margin-top:20px;">
+  Load more
+</button>
+
+<!-- Jekyll → JS data -->
+<script>
+  const posts = [
+    {% for post in site.posts %}
+      {
+        title: "{{ post.title }}",
+        url: "{{ post.url }}",
+        date: "{{ post.date | date: "%Y-%m-%d" }}",
+        categories: {{ post.categories | jsonify }},
+        excerpt: "{{ post.excerpt | strip_newlines | escape }}"
+      }{% unless forloop.last %},{% endunless %}
     {% endfor %}
-  </li>
-{% endfor %}
-</ul>
+  ];
+</script>
 
-<hr>
+<!-- App logic -->
+<script>
+let visibleCount = 10;
+let currentCategory = null;
 
-<h2>💭 Thoughts</h2>
-<ul>
-{% for post in site.categories.thoughts limit:3 %}
-  <li>
-    <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+function renderPosts() {
+  const container = document.getElementById("posts");
+  container.innerHTML = "";
 
-    {% for category in post.categories %}
-      <small><a href="/{{ category }}/">#{{ category }}</a></small>
-    {% endfor %}
-  </li>
-{% endfor %}
-</ul>
+  let filtered = posts;
 
-<p><a href="/thoughts/">→ View all Thoughts</a></p>
+  if (currentCategory) {
+    filtered = posts.filter(p => p.categories.includes(currentCategory));
+  }
 
-<hr>
+  const visible = filtered.slice(0, visibleCount);
 
-<h2>🚀 Projects</h2>
-<ul>
-{% for post in site.categories.projects limit:3 %}
-  <li>
-    <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+  visible.forEach(post => {
+    const el = document.createElement("div");
+    el.style.border = "1px solid #eee";
+    el.style.padding = "12px";
+    el.style.marginBottom = "12px";
+    el.style.borderRadius = "8px";
+    el.style.background = "white";
 
-    {% for category in post.categories %}
-      <small><a href="/{{ category }}/">#{{ category }}</a></small>
-    {% endfor %}
-  </li>
-{% endfor %}
-</ul>
+    el.innerHTML = `
+      <a href="${post.url}"><strong>${post.title}</strong></a><br>
+      <small>${post.date}</small><br>
+      <p>${post.excerpt}</p>
+      ${post.categories.map(c => `<small>#${c}</small>`).join(" ")}
+    `;
 
-<p><a href="/projects/">→ View all Projects</a></p>
+    container.appendChild(el);
+  });
+
+  document.getElementById("loadMore").style.display =
+    visible.length < filtered.length ? "block" : "none";
+}
+
+function loadMore() {
+  visibleCount += 10;
+  renderPosts();
+}
+
+function setCategory(cat) {
+  currentCategory = cat;
+  visibleCount = 10;
+  renderPosts();
+}
+
+// initial render
+renderPosts();
+</script>
