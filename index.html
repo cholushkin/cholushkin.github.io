@@ -5,7 +5,7 @@ title: Home
 
 <h1>📰 Blog</h1>
 
-<div id="filters" style="margin-bottom: 20px;">
+<div id="filters" class="filters">
   <button onclick="setCategory(null)" id="filter-all">All</button>
   <button onclick="setCategory('thoughts')" id="filter-thoughts">Thoughts</button>
   <button onclick="setCategory('projects')" id="filter-projects">Projects</button>
@@ -30,8 +30,8 @@ const posts = [
       | split: '<!--more-->'
       | first
       | strip_html
-      | replace: '\n', ' '
-      | truncate: 160
+      | newline_to_br
+      | truncate: 200
       | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
@@ -45,22 +45,13 @@ let currentCategory = null;
 
 function setActiveButton() {
   const buttons = document.querySelectorAll("#filters button");
-
-  buttons.forEach(btn => {
-    btn.style.background = "#eee";
-    btn.style.fontWeight = "normal";
-  });
+  buttons.forEach(btn => btn.classList.remove("active"));
 
   if (!currentCategory) {
-    document.getElementById("filter-all").style.background = "#ddd";
-    document.getElementById("filter-all").style.fontWeight = "bold";
+    document.getElementById("filter-all").classList.add("active");
   } else {
-    const id = "filter-" + currentCategory;
-    const btn = document.getElementById(id);
-    if (btn) {
-      btn.style.background = "#ddd";
-      btn.style.fontWeight = "bold";
-    }
+    const btn = document.getElementById("filter-" + currentCategory);
+    if (btn) btn.classList.add("active");
   }
 }
 
@@ -84,38 +75,24 @@ function renderPosts() {
     el.style.marginBottom = "12px";
     el.style.borderRadius = "10px";
     el.style.background = "white";
-    el.style.transition = "transform 0.1s ease, box-shadow 0.1s ease";
+    el.style.cursor = "pointer"; 
 
-    el.onmouseenter = () => {
-      el.style.transform = "translateY(-2px)";
-      el.style.boxShadow = "0 4px 12px rgba(0,0,0,0.05)";
-    };
-
-    el.onmouseleave = () => {
-      el.style.transform = "none";
-      el.style.boxShadow = "none";
+    el.onclick = () => {
+      window.location.href = post.url;
     };
 
     el.innerHTML = `
-      <a href="${post.url}" style="text-decoration:none; color:inherit; display:block;">
-        
-        <h3 style="margin:0 0 6px 0;">${post.title}</h3>
+      <h3 style="margin:0 0 6px 0;">${post.title}</h3>
 
-        <small style="color:#666;">${post.date}</small>
+      <small style="color:#666;">${post.date}</small>
 
-        <p style="margin:10px 0;">
-          ${post.excerpt}
-        </p>
+      <div style="margin:10px 0; color:#333;">
+        ${post.excerpt}
+      </div>
 
-        <div>
-          ${post.categories.map(c => `
-            <span style="margin-right:6px; font-size:12px; color:#0366d6;">
-              #${c}
-            </span>
-          `).join("")}
-        </div>
-
-      </a>
+      <div style="font-size:12px; color:#777;">
+        ${post.categories.map(c => `#${c}`).join(" ")}
+      </div>
     `;
 
     container.appendChild(el);
