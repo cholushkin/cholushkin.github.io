@@ -9,8 +9,12 @@ title: Home
 <ul>
 {% for post in site.posts limit:5 %}
   <li>
-    <a href="{{ post.url }}">{{ post.title }}</a>
-    ({{ post.date | date: "%Y-%m-%d" }})
+    <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+    <small>{{ post.date | date: "%Y-%m-%d" }}</small><br>
+
+    {% for category in post.categories %}
+      <small><a href="/{{ category }}/">#{{ category }}</a></small>
+    {% endfor %}
   </li>
 {% endfor %}
 </ul>
@@ -21,7 +25,11 @@ title: Home
 <ul>
 {% for post in site.categories.thoughts limit:3 %}
   <li>
-    <a href="{{ post.url }}">{{ post.title }}</a>
+    <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+
+    {% for category in post.categories %}
+      <small><a href="/{{ category }}/">#{{ category }}</a></small>
+    {% endfor %}
   </li>
 {% endfor %}
 </ul>
@@ -34,7 +42,11 @@ title: Home
 <ul>
 {% for post in site.categories.projects limit:3 %}
   <li>
-    <a href="{{ post.url }}">{{ post.title }}</a>
+    <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
+
+    {% for category in post.categories %}
+      <small><a href="/{{ category }}/">#{{ category }}</a></small>
+    {% endfor %}
   </li>
 {% endfor %}
 </ul>

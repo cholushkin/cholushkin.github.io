@@ -3,22 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title }}</title>
-  <p>
-  Categories:
-  {% for category in page.categories %}
-    <a href="/{{ category }}/">{{ category }}</a>
-  {% endfor %}
-  </p>
+
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 16px;
+      line-height: 1.6;
+      background: #fafafa;
+    }
+
+    nav {
+      margin-bottom: 20px;
+    }
+
+    nav a {
+      margin-right: 12px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    article {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid #eee;
+    }
+
+    a {
+      color: #0366d6;
+    }
+
+    small {
+      color: #666;
+    }
+  </style>
 </head>
 <body>
+
+<nav>
+  <a href="/">Home</a>
+  <a href="/thoughts/">Thoughts</a>
+  <a href="/projects/">Projects</a>
+</nav>
+
+<article>
   <h1>{{ page.title }}</h1>
-  <p><i>{{ page.date }}</i></p>
+
+  <p>
+    <small>
+      {{ page.date | date: "%Y-%m-%d" }} —
+      {% for category in page.categories %}
+        <a href="/{{ category }}/">#{{ category }}</a>
+      {% endfor %}
+    </small>
+  </p>
 
   <hr>
 
   {{ content }}
+</article>
 
-  <hr>
-  <a href="/">← Back to home</a>
 </body>
 </html>
