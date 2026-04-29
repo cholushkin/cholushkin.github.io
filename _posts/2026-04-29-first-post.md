@@ -1,6 +1,6 @@
 ---
-layout: post
-title: "My First News Post"
+layout: default
+title: "My First Post"
 date: 2026-04-29
 ---
 
@@ -88,14 +88,6 @@ Unfiltered thinking:
 * messy notes
 * sketches of ideas
 * connections between unrelated things
-
-```mermaid
-graph TD
-A[Idea] --> B[Experiment]
-B --> C[Failure]
-C --> D[Insight]
-D --> A
-```
 
 ---
 
