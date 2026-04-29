@@ -1,8 +1,8 @@
 # 📰 Blog
 
-A minimal news-style blog built with Markdown and static generation using GitHub Pages.
+A minimal news-style blog built with Markdown, Jekyll, and GitHub Pages, enhanced with a lightweight client-side UI.
 
-Posts are written in Markdown and organized with categories like **thoughts** and **projects**, making it simple to manage content without a traditional CMS.
+Posts are written in Markdown and organized with categories like **thoughts** and **projects**, providing a simple CMS-like workflow without a traditional backend.
 
 ## 🚀 Live Site
 
@@ -12,17 +12,23 @@ Posts are written in Markdown and organized with categories like **thoughts** an
 
 * Posts live in the `_posts/` folder as Markdown files
 * Categories are defined in frontmatter
-* Jekyll automatically builds and groups content
-* No backend required — fully static
+* Jekyll builds the site into static files
+* A small JavaScript layer adds:
+
+  * filtering by category
+  * pagination ("load more")
+  * dynamic post previews
+
+👉 No backend required — everything runs in the browser
 
 ## 📂 Structure
 
 ```
 _posts/        # blog posts (Markdown)
 _layouts/      # page layouts
-index.md       # homepage
-thoughts.md    # category page
-projects.md    # category page
+index.html     # homepage (dynamic UI)
+about.md       # about page
+cheatsheets.md # cheatsheets page
 ```
 
 ## 🧠 Goal
@@ -31,6 +37,12 @@ To create a simple, Git-based CMS-like blog system that is:
 
 * easy to maintain
 * fast
-* fully static
+* flexible (static + interactive)
 
 ---
+
+## ⚙️ Tech
+
+* GitHub Pages (hosting)
+* Jekyll (build)
+* Vanilla JavaScript (client-side interactivity)
