@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Easing Functions Cheatsheet (DoTween)"
-date: 2026-04-30
+date: 2026-04-30 00:00:00 +0300
 categories: [projects]
 ---
 
