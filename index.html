@@ -28,8 +28,7 @@ const posts = [
     excerpt: {{ post.content
       | split: '<!--more-->'
       | first
-      | strip_html
-      | newline_to_br
+      | markdownify
       | truncate: 200
       | jsonify }}
   }{% unless forloop.last %},{% endunless %}

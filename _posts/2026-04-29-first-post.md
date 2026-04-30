@@ -12,6 +12,7 @@ categories: [thoughts, projects]
 * “wait… what if?” moments
 * personal philosophies
 
+And...
 <!--more-->
 
 * progress updates
