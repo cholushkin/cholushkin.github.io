@@ -9,7 +9,7 @@ categories: [projects]
 
 A minimal visual palette for exploring easing functions, designed for quick comparison and practical use with DoTween in Unity.
 
-https://cholushkin.github.io/cheatsheets/easings.html
+[https://cholushkin.github.io/cheatsheets/easings.html](https://cholushkin.github.io/cheatsheets/easings.html)
 
 <!--more-->
 
@@ -17,7 +17,7 @@ ___
 
 ## Core Idea
 
-I've always liked https://easings.net/
+I've always liked [https://easings.net/](https://easings.net/)
 
 It's a great way to quickly scan easing curves before using them in scripts, especially when working with DoTween in Unity. The site is easy to find, even referenced in DoTween documentation, so it's no surprise it became the go-to visual reference. I've used it many times as a quick cheatsheet.
 
