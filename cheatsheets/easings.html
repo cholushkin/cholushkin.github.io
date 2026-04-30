@@ -1,60 +1,100 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Easings</title>
+<meta charset="UTF-8">
+<title>Easings</title>
 
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #fafafa;
-      margin: 0;
-      padding: 40px;
-    }
+<style>
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #fafafa;
+  margin: 0;
+  padding: 40px;
+}
 
-    h1 {
-      margin-bottom: 20px;
-    }
+h1 {
+  margin-bottom: 20px;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: 16px;
-    }
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
 
-    .card {
-      background: white;
-      border: 1px solid #eee;
-      border-radius: 10px;
-      padding: 12px;
-      cursor: pointer;
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
+.card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
+}
 
-    .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
+canvas {
+  width: 100%;
+  height: 140px;
+  display: block;
+}
 
-    canvas {
-      width: 100%;
-      height: 120px;
-      display: block;
-      margin-bottom: 8px;
-    }
+.name {
+  font-size: 13px;
+  text-align: center;
+  margin-top: 6px;
+}
 
-    .name {
-      font-size: 13px;
-      text-align: center;
-      color: #333;
-    }
-  </style>
+.controls {
+  margin-top: 30px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+button.active {
+  background: #6c5ce7;
+  color: white;
+}
+
+</style>
 </head>
+
 <body>
 
 <h1>Easing Functions</h1>
 
 <div class="grid" id="grid"></div>
+
+<div class="controls">
+  <div>
+    <strong>Visualization:</strong>
+    <button id="moveBtn" class="active">Move</button>
+    <button id="scaleBtn">Scale</button>
+    <button id="rotateBtn">Rotate</button>
+  </div>
+
+  <div>
+    <strong>Duration:</strong>
+    <input type="range" id="duration" min="0.5" max="3" step="0.1" value="1.5">
+    <span id="durationLabel">1.5s</span>
+  </div>
+
+  <div>
+    <strong>Loop:</strong>
+    <button id="loopBtn" class="active">Loop</button>
+    <button id="pingBtn">Ping-Pong</button>
+  </div>
+</div>
 
 <script>
 const easings = {
@@ -66,78 +106,154 @@ const easings = {
 
   easeInCubic: t => t*t*t,
   easeOutCubic: t => (--t)*t*t+1,
-  easeInOutCubic: t => t<0.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1,
-
-  easeInQuart: t => t*t*t*t,
-  easeOutQuart: t => 1-(--t)*t*t*t,
-  easeInOutQuart: t => t<0.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t,
-
-  easeInQuint: t => t*t*t*t*t,
-  easeOutQuint: t => 1+(--t)*t*t*t*t,
-  easeInOutQuint: t => t<0.5 ? 16*t*t*t*t*t : 1+16*(--t)*t*t*t*t
+  easeInOutCubic: t => t<0.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1
 };
 
-function draw(canvas, fn) {
-  const ctx = canvas.getContext("2d");
-  const w = canvas.width = canvas.offsetWidth;
-  const h = canvas.height = canvas.offsetHeight;
-
-  ctx.clearRect(0,0,w,h);
-
-  ctx.strokeStyle = "#ddd";
-  ctx.lineWidth = 1;
-
-  for (let i=1;i<5;i++) {
-    const x = (w/5)*i;
-    const y = (h/5)*i;
-
-    ctx.beginPath();
-    ctx.moveTo(x,0);
-    ctx.lineTo(x,h);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.moveTo(0,y);
-    ctx.lineTo(w,y);
-    ctx.stroke();
-  }
-
-  ctx.strokeStyle = "#6c5ce7";
-  ctx.lineWidth = 2;
-
-  ctx.beginPath();
-
-  for (let i=0;i<=100;i++) {
-    const t = i/100;
-    const x = t * w;
-    const y = h - fn(t)*h;
-
-    if (i === 0) ctx.moveTo(x,y);
-    else ctx.lineTo(x,y);
-  }
-
-  ctx.stroke();
-}
+let flags = { move: true, scale: false, rotate: false };
+let duration = 1.5;
+let loopType = "loop";
 
 const grid = document.getElementById("grid");
+const items = [];
 
 Object.entries(easings).forEach(([name, fn]) => {
   const card = document.createElement("div");
   card.className = "card";
 
   const canvas = document.createElement("canvas");
-
   const label = document.createElement("div");
+
   label.className = "name";
   label.textContent = name;
 
   card.appendChild(canvas);
   card.appendChild(label);
-
   grid.appendChild(card);
 
-  requestAnimationFrame(() => draw(canvas, fn));
+  items.push({ canvas, fn });
 });
+
+function draw(canvas, fn, time) {
+  const ctx = canvas.getContext("2d");
+  const w = canvas.width = canvas.offsetWidth;
+  const h = canvas.height = canvas.offsetHeight;
+
+  const pad = 20;
+
+  ctx.clearRect(0,0,w,h);
+
+  // axes
+  ctx.strokeStyle = "#bbb";
+  ctx.lineWidth = 1;
+
+  ctx.beginPath();
+  ctx.moveTo(pad, h - pad);
+  ctx.lineTo(w - pad, h - pad);
+  ctx.lineTo(w - pad - 5, h - pad - 5);
+  ctx.moveTo(w - pad, h - pad);
+  ctx.lineTo(w - pad - 5, h - pad + 5);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(pad, h - pad);
+  ctx.lineTo(pad, pad);
+  ctx.lineTo(pad - 5, pad + 5);
+  ctx.moveTo(pad, pad);
+  ctx.lineTo(pad + 5, pad + 5);
+  ctx.stroke();
+
+  // labels
+  ctx.fillStyle = "#888";
+  ctx.font = "10px sans-serif";
+  ctx.fillText("t", w - pad + 4, h - pad + 10);
+  ctx.fillText("x", pad - 10, pad - 4);
+
+  // curve
+  ctx.strokeStyle = "#6c5ce7";
+  ctx.lineWidth = 2;
+
+  ctx.beginPath();
+  for (let i=0;i<=100;i++) {
+    const t = i/100;
+    const x = pad + t*(w - 2*pad);
+    const y = h - pad - fn(t)*(h - 2*pad);
+    if (i === 0) ctx.moveTo(x,y);
+    else ctx.lineTo(x,y);
+  }
+  ctx.stroke();
+
+  // animation time
+  let t;
+  if (loopType === "loop") {
+    t = (time % duration) / duration;
+  } else {
+    const cycle = time % (duration * 2);
+    t = cycle < duration
+      ? cycle / duration
+      : 1 - (cycle - duration) / duration;
+  }
+
+  const v = fn(t);
+
+  let x = pad + t*(w - 2*pad);
+  let y = h - pad - v*(h - 2*pad);
+
+  ctx.save();
+  ctx.translate(x, y);
+
+  let size = 6;
+
+  if (flags.scale) size *= 0.5 + v;
+  if (flags.rotate) ctx.rotate(v * Math.PI * 2);
+  if (flags.move) ctx.translate(0, 0);
+
+  ctx.fillStyle = "#6c5ce7";
+  ctx.fillRect(-size/2, -size/2, size, size);
+
+  ctx.restore();
+}
+
+let start = performance.now();
+
+function loop(now) {
+  const time = (now - start) / 1000;
+
+  items.forEach(({canvas, fn}) => {
+    draw(canvas, fn, time);
+  });
+
+  requestAnimationFrame(loop);
+}
+
+requestAnimationFrame(loop);
+
+/* controls */
+
+function toggle(btn, key) {
+  flags[key] = !flags[key];
+  btn.classList.toggle("active", flags[key]);
+}
+
+moveBtn.onclick = () => toggle(moveBtn, "move");
+scaleBtn.onclick = () => toggle(scaleBtn, "scale");
+rotateBtn.onclick = () => toggle(rotateBtn, "rotate");
+
+duration.oninput = e => {
+  duration = parseFloat(e.target.value);
+  durationLabel.textContent = duration.toFixed(1) + "s";
+};
+
+loopBtn.onclick = () => {
+  loopType = "loop";
+  loopBtn.classList.add("active");
+  pingBtn.classList.remove("active");
+};
+
+pingBtn.onclick = () => {
+  loopType = "ping";
+  pingBtn.classList.add("active");
+  loopBtn.classList.remove("active");
+};
 </script>
 
 </body>
