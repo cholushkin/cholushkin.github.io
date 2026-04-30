@@ -17,6 +17,8 @@ title: Home
   Load more
 </button>
 
+<div>Total posts: {{ site.posts | size }}</div>
+
 <script>
 const posts = [
   {% for post in site.posts %}
