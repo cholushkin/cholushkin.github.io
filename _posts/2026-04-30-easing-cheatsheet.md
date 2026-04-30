@@ -13,7 +13,7 @@ https://cholushkin.github.io/cheatsheets/easings.html
 
 <!--more-->
 
----
+___
 
 ## Core Idea
 
@@ -27,7 +27,7 @@ But recently, with AI tools, I realized something:
 
 So I did.
 
----
+___
 
 ## What's Different
 
@@ -38,7 +38,7 @@ This version is intentionally stripped down and focused.
 - optimized for quick visual scanning
 - designed as a true cheatsheet, not a showcase
 
----
+___
 
 ## Why It's Better (for me)
 
@@ -48,7 +48,7 @@ The goal wasn't to improve everything - just to improve *my workflow*.
 - cleaner layout, no distractions
 - direct mapping to real usage in DoTween
 
----
+___
 
 ## Full DoTween Coverage
 
