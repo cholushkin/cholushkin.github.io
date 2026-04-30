@@ -13,6 +13,7 @@ categories: [thoughts, projects]
 * personal philosophies
 
 And...
+
 <!--more-->
 
 * progress updates
