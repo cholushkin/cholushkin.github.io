@@ -11,16 +11,16 @@ permalink: /cheatsheets/
 <script>
 const cheatsheets = [
   {
-    title: "JS Array Methods",
-    url: "/cheatsheets/js-array-methods.html",
+    title: "Easings",
+    url: "/cheatsheets/easings.html",
     categories: ["javascript", "basics"],
-    thumbnail: "/assets/thumbs/js-array.png"
+    thumbnail: "/assets/thumbs/easings.jpg"
   },
   {
     title: "Unity FPS Controller",
     url: "/cheatsheets/fps-demo/",
     categories: ["unity", "gamedev"],
-    thumbnail: "/assets/thumbs/unity-fps.png"
+    thumbnail: "/assets/thumbs/default.png"
   }
 ];
 </script>
@@ -77,7 +77,7 @@ function renderCheatsheets() {
 	  </div>
 
 	  <div style="text-align:center; margin:12px 0; font-weight:500;">
-		Read →
+		Open →
 	  </div>
 
 	  <div style="font-size:12px; color:#777;">
