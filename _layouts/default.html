@@ -35,6 +35,10 @@
       text-decoration: underline;
     }
 
+    nav a.active {
+      font-weight: bold;
+    }
+
     .markdown-body {
       background: transparent;
     }
@@ -88,9 +92,9 @@
 <div class="container">
 
   <nav>
-    <a href="/" style="font-weight: bold;">Blog</a> |
-    <a href="/cheatsheets/">Cheatsheets</a> |
-    <a href="/about/">About</a>
+    <a href="/" class="{% if page.url == '/' %}active{% endif %}">Blog</a> |
+    <a href="/cheatsheets/" class="{% if page.url contains '/cheatsheets' %}active{% endif %}">Cheatsheets</a> |
+    <a href="/about/" class="{% if page.url contains '/about' %}active{% endif %}">About</a>
   </nav>
 
   <hr>
