@@ -12,7 +12,7 @@ categories: [thoughts, projects]
 * “wait… what if?” moments
 * personal philosophies
 
-And...
+Also...
 
 <!--more-->
 
@@ -40,3 +40,4 @@ And...
 * This site isn’t a portfolio. It’s a **thinking space**.
 * Messy is allowed.
 * Interesting is the goal.
+* Absolute Nordic minimalism — no unnecessary bells and whistles.
