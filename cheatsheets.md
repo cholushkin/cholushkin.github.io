@@ -13,12 +13,14 @@ const cheatsheets = [
   {
     title: "JS Array Methods",
     url: "/cheatsheets/js-array-methods.html",
-    categories: ["javascript", "basics"]
+    categories: ["javascript", "basics"],
+    thumbnail: "/assets/thumbs/js-array.png"
   },
   {
     title: "Unity FPS Controller",
     url: "/cheatsheets/fps-demo/",
-    categories: ["unity", "gamedev"]
+    categories: ["unity", "gamedev"],
+    thumbnail: "/assets/thumbs/unity-fps.png"
   }
 ];
 </script>
@@ -52,18 +54,36 @@ function renderCheatsheets() {
     };
 
     el.innerHTML = `
-      <div>
-        <h3 style="margin:0 0 6px 0;">${item.title}</h3>
-      </div>
+	  <div>
+		<div style="
+		  width:100%;
+		  height:120px;
+		  background:#f0f0f0;
+		  border-radius:6px;
+		  margin-bottom:10px;
+		  overflow:hidden;
+		">
+		  ${item.thumbnail ? `
+			<img src="${item.thumbnail}" style="
+			  width:100%;
+			  height:100%;
+			  object-fit:cover;
+			  display:block;
+			">
+		  ` : ``}
+		</div>
 
-      <div style="text-align:center; margin:12px 0; font-weight:500;">
-        Read →
-      </div>
+		<h3 style="margin:0 0 6px 0;">${item.title}</h3>
+	  </div>
 
-      <div style="font-size:12px; color:#777;">
-        ${item.categories.map(c => `#${c}`).join(" ")}
-      </div>
-    `;
+	  <div style="text-align:center; margin:12px 0; font-weight:500;">
+		Read →
+	  </div>
+
+	  <div style="font-size:12px; color:#777;">
+		${item.categories.map(c => `#${c}`).join(" ")}
+	  </div>
+	`;
 
     container.appendChild(el);
   });
