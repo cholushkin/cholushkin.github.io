@@ -65,7 +65,6 @@ button.active {
   background: #6c5ce7;
   color: white;
 }
-
 </style>
 </head>
 
@@ -81,6 +80,7 @@ button.active {
     <button id="moveBtn" class="active">Move</button>
     <button id="scaleBtn">Scale</button>
     <button id="rotateBtn">Rotate</button>
+    <button id="colorBtn">Color</button>
   </div>
 
   <div>
@@ -109,8 +109,14 @@ const easings = {
   easeInOutCubic: t => t<0.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1
 };
 
-let flags = { move: true, scale: false, rotate: false };
-let duration = 1.5;
+let flags = {
+  move: true,
+  scale: false,
+  rotate: false,
+  color: false
+};
+
+let durationValue = 1.5;
 let loopType = "loop";
 
 const grid = document.getElementById("grid");
@@ -149,20 +155,13 @@ function draw(canvas, fn, time) {
   ctx.beginPath();
   ctx.moveTo(pad, h - pad);
   ctx.lineTo(w - pad, h - pad);
-  ctx.lineTo(w - pad - 5, h - pad - 5);
-  ctx.moveTo(w - pad, h - pad);
-  ctx.lineTo(w - pad - 5, h - pad + 5);
   ctx.stroke();
 
   ctx.beginPath();
   ctx.moveTo(pad, h - pad);
   ctx.lineTo(pad, pad);
-  ctx.lineTo(pad - 5, pad + 5);
-  ctx.moveTo(pad, pad);
-  ctx.lineTo(pad + 5, pad + 5);
   ctx.stroke();
 
-  // labels
   ctx.fillStyle = "#888";
   ctx.font = "10px sans-serif";
   ctx.fillText("t", w - pad + 4, h - pad + 10);
@@ -182,32 +181,49 @@ function draw(canvas, fn, time) {
   }
   ctx.stroke();
 
-  // animation time
-  let t;
+  // normalized time
+  let tNorm;
+
   if (loopType === "loop") {
-    t = (time % duration) / duration;
+    tNorm = (time / durationValue) % 1;
   } else {
-    const cycle = time % (duration * 2);
-    t = cycle < duration
-      ? cycle / duration
-      : 1 - (cycle - duration) / duration;
+    const cycle = (time / durationValue) % 2;
+    tNorm = cycle < 1 ? cycle : 2 - cycle;
   }
 
-  const v = fn(t);
+  const v = fn(tNorm);
 
-  let x = pad + t*(w - 2*pad);
+  // base position
+  let x = pad;
   let y = h - pad - v*(h - 2*pad);
+
+  if (flags.move) {
+    x = pad + tNorm * (w - 2 * pad);
+  }
+
+  // size
+  let size = 18;
+
+  if (flags.scale) {
+    size *= (0.5 + v);
+  }
+
+  // color
+  let r = 255, g = 0, b = 0;
+
+  if (flags.color) {
+    r = Math.round(255 * (1 - v));
+    b = Math.round(255 * v);
+  }
 
   ctx.save();
   ctx.translate(x, y);
 
-  let size = 6;
+  if (flags.rotate) {
+    ctx.rotate(tNorm * Math.PI * 2);
+  }
 
-  if (flags.scale) size *= 0.5 + v;
-  if (flags.rotate) ctx.rotate(v * Math.PI * 2);
-  if (flags.move) ctx.translate(0, 0);
-
-  ctx.fillStyle = "#6c5ce7";
+  ctx.fillStyle = `rgb(${r},${g},${b})`;
   ctx.fillRect(-size/2, -size/2, size, size);
 
   ctx.restore();
@@ -237,10 +253,11 @@ function toggle(btn, key) {
 moveBtn.onclick = () => toggle(moveBtn, "move");
 scaleBtn.onclick = () => toggle(scaleBtn, "scale");
 rotateBtn.onclick = () => toggle(rotateBtn, "rotate");
+colorBtn.onclick = () => toggle(colorBtn, "color");
 
 duration.oninput = e => {
-  duration = parseFloat(e.target.value);
-  durationLabel.textContent = duration.toFixed(1) + "s";
+  durationValue = parseFloat(e.target.value);
+  durationLabel.textContent = durationValue.toFixed(1) + "s";
 };
 
 loopBtn.onclick = () => {
