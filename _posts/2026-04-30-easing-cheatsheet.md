@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Easing Functions Cheatsheet (DoTween)"
-date: 2026-04-29
+date: 2026-04-30
 categories: [projects]
 ---
 
@@ -15,7 +15,7 @@ https://cholushkin.github.io/cheatsheets/easings.html
 
 ---
 
-##  Core Idea
+## Core Idea
 
 I’ve always liked https://easings.net/
 
@@ -23,13 +23,13 @@ It’s a great way to quickly scan easing curves before using them in scripts — es
 
 But recently, with AI tools, I realized something:
 
-> “You know what? I’ll build my own easing site. With blackjack. And hookers.” — Futurama
+> "You know what? I'll build my own easing site. With blackjack. And hookers." - Futurama
 
 So I did.
 
 ---
 
-##  What’s Different
+## What’s Different
 
 This version is intentionally stripped down and focused.
 
@@ -40,7 +40,7 @@ This version is intentionally stripped down and focused.
 
 ---
 
-##  Why It’s Better (for me)
+## Why It’s Better (for me)
 
 The goal wasn’t to improve everything — just to improve *my workflow*.
 
@@ -50,7 +50,7 @@ The goal wasn’t to improve everything — just to improve *my workflow*.
 
 ---
 
-##  Full DoTween Coverage
+## Full DoTween Coverage
 
 Unlike most references, this version includes the full set:
 
