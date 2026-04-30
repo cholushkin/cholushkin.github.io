@@ -194,6 +194,34 @@ const easings = {
       : (1 + easings.OutBounce(2*t - 1)) / 2
 };
 
+function flashCore(t, count, power) {
+  if (t === 0 || t === 1) return t;
+
+  const step = Math.floor(t * count);
+  const progress = (t * count) - step;
+
+  const direction = step % 2 === 0 ? 1 : -1;
+
+  return direction > 0
+    ? Math.pow(progress, power)
+    : 1 - Math.pow(progress, power);
+}
+
+easings.Flash = t => flashCore(t, 3, 1);
+
+easings.InFlash = t => t * flashCore(t, 3, 1);
+
+easings.OutFlash = t => (1 - t) * flashCore(t, 3, 1) + t;
+
+easings.InOutFlash = t => {
+  if (t < 0.5) {
+    return 0.5 * (t * 2) * flashCore(t * 2, 3, 1);
+  } else {
+    return 0.5 + 0.5 * ((1 - (t - 0.5) * 2) * flashCore((t - 0.5) * 2, 3, 1));
+  }
+};
+
+
 let flags = {
   move: true,
   scale: false,
