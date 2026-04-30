@@ -20,7 +20,7 @@ const cheatsheets = [
     title: "Unity FPS Controller",
     url: "/cheatsheets/fps-demo/",
     categories: ["unity", "gamedev"],
-    thumbnail: "/assets/thumbs/default.png"
+    thumbnail: "/assets/thumbs/default.jpg"
   }
 ];
 </script>
@@ -57,7 +57,7 @@ function renderCheatsheets() {
 	  <div>
 		<div style="
 		  width:100%;
-		  height:120px;
+		  aspect-ratio: 5 / 3;
 		  background:#f0f0f0;
 		  border-radius:6px;
 		  margin-bottom:10px;
