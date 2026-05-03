@@ -2,244 +2,236 @@ Script: PrintTreeScript.py
 Parameters:
   path = .
   dirs_only = False
-  content_patterns = *.html;*.md
+  content_patterns = *.py;*.cs;*.txt;*.md;*.cmd;*.bat;*.css
   content_ignore_patterns = 
-  ignore_patterns = _posts;.git
+  ignore_patterns = __pycache__;*.pyc;.git
   log_level = 20
   log_file = Tree.log
 Output:
 D:\projects\dev\cholushkin.github.io
     _layouts
         default.html
-        // --- Start File: D:\projects\dev\cholushkin.github.io\_layouts\default.html ---
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <meta charset="UTF-8">
-              <title>{{ page.title }}</title>
-                <style>
-                  body {
-                    font-family: system-ui, -apple-system, sans-serif;
-                    max-width: 800px;
-                    margin: 40px auto;
-                    padding: 0 16px;
-                    line-height: 1.6;
-                    background: #fafafa;
-                  }
-                  nav {
-                    margin-bottom: 20px;
-                  }
-                  nav a {
-                    margin-right: 12px;
-                    text-decoration: none;
-                    color: #333;
-                    font-weight: 500;
-                  }
-                  nav a:hover {
-                    text-decoration: underline;
-                  }
-                  h1, h2 {
-                    margin-top: 30px;
-                  }
-                  ul {
-                    list-style: none;
-                    padding: 0;
-                  }
-                  li {
-                    background: white;
-                    padding: 12px 16px;
-                    margin-bottom: 10px;
-                    border-radius: 8px;
-                    border: 1px solid #eee;
-                  }
-                  a {
-                    color: #0366d6;
-                  }
-                  small {
-                    color: #666;
-                  }
-                </style>
-            </head>
-            <body>
-            <nav>
-              <a href="/">Home</a> |
-              <a href="/thoughts/">Thoughts</a> |
-              <a href="/projects/">Projects</a>
-            </nav>
-            <hr>
-            {{ content }}
-            </body>
-            </html>
-        // --- End File: D:\projects\dev\cholushkin.github.io\_layouts\default.html ---
         post.html
-        // --- Start File: D:\projects\dev\cholushkin.github.io\_layouts\post.html ---
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <meta charset="UTF-8">
-              <title>{{ page.title }}</title>
-              <style>
-                body {
-                  font-family: system-ui, -apple-system, sans-serif;
-                  max-width: 800px;
-                  margin: 40px auto;
-                  padding: 0 16px;
-                  line-height: 1.6;
-                  background: #fafafa;
-                }
-                nav {
-                  margin-bottom: 20px;
-                }
-                nav a {
-                  margin-right: 12px;
-                  text-decoration: none;
-                  color: #333;
-                  font-weight: 500;
-                }
-                nav a:hover {
-                  text-decoration: underline;
-                }
-                article {
-                  background: white;
-                  padding: 20px;
-                  border-radius: 10px;
-                  border: 1px solid #eee;
-                }
-                a {
-                  color: #0366d6;
-                }
-                small {
-                  color: #666;
-                }
-              </style>
-            </head>
-            <body>
-            <nav>
-              <a href="/">Home</a>
-              <a href="/thoughts/">Thoughts</a>
-              <a href="/projects/">Projects</a>
-            </nav>
-            <article>
-              <h1>{{ page.title }}</h1>
-              <p>
-                <small>
-                  {{ page.date | date: "%Y-%m-%d" }} —
-                  {% for category in page.categories %}
-                    <a href="/{{ category }}/">#{{ category }}</a>
-                  {% endfor %}
-                </small>
-              </p>
-              <hr>
-              {{ content }}
-            </article>
-            </body>
-            </html>
-        // --- End File: D:\projects\dev\cholushkin.github.io\_layouts\post.html ---
+    _posts
+        2026-04-29-first-post.md
+        // --- Start File: D:\projects\dev\cholushkin.github.io\_posts\2026-04-29-first-post.md ---
+            ---
+            layout: post
+            title: "My First Post"
+            date: 2026-04-29
+            categories: [thoughts, projects]
+            ---
+            # ✨ Blog Concept: Ideas, Thoughts & Updates
+            * random insights
+            * half-baked ideas
+            * “wait… what if?” moments
+            * personal philosophies
+            Also...
+            <!--more-->
+            * progress updates
+            * lessons learned
+            * failures
+            * behind-the-scenes decisions
+            * dev tools
+            * productivity hacks
+            * niche gems from the internet
+            * use-cases
+            * pros/cons
+            * investigations
+            * comparisions
+            * messy notes
+            * sketches of ideas
+            * connections between unrelated things
+            * thoughts from my Obsidian
+            * skills I am learning
+            * habits I am building
+            * reflections every month
+            * industry trends
+            * tools everyone loves but you don’t
+            * things that are overrated/underrated
+            * This site isn’t a portfolio. It’s a **thinking space**.
+            * Messy is allowed.
+            * Interesting is the goal.
+            * Absolute Nordic minimalism — no unnecessary bells and whistles.
+        // --- End File: D:\projects\dev\cholushkin.github.io\_posts\2026-04-29-first-post.md ---
+        2026-04-30-easing-cheatsheet.md
+        // --- Start File: D:\projects\dev\cholushkin.github.io\_posts\2026-04-30-easing-cheatsheet.md ---
+            ---
+            layout: post
+            title: "Easing Functions Cheatsheet (DoTween)"
+            date: 2026-04-30
+            categories: [projects]
+            ---
+            # Easing Functions Cheatsheet
+            A minimal visual palette for exploring easing functions, designed for quick comparison and practical use with DoTween in Unity.
+            [https://cholushkin.github.io/cheatsheets/easings.html](https://cholushkin.github.io/cheatsheets/easings.html)
+            <!--more-->
+            ___
+            ## Core Idea
+            I've always liked [https://easings.net/](https://easings.net/)
+            It's a great way to quickly scan easing curves before using them in scripts, especially when working with DoTween in Unity. The site is easy to find, even referenced in DoTween documentation, so it's no surprise it became the go-to visual reference. I've used it many times as a quick cheatsheet.
+            But recently, with AI tools, I realized something:
+            > "You know what? I'll build my own easing site. With blackjack. And hookers." - Futurama
+            So I did.
+            ___
+            ## What's Different
+            This version is intentionally stripped down and focused.
+            - no unnecessary features or noise
+            - absolute minimalism
+            - optimized for quick visual scanning
+            - designed as a true cheatsheet, not a showcase
+            ___
+            ## Why It's Better (for me)
+            The goal wasn't to improve everything - just to improve *my workflow*.
+            - faster comparison of easing curves
+            - cleaner layout, no distractions
+            - direct mapping to real usage in DoTween
+            ___
+            ## Full DoTween Coverage
+            Unlike most references, this version includes the full set:
+            - all easing types from DoTween
+            - total: **35 easing functions**
+        // --- End File: D:\projects\dev\cholushkin.github.io\_posts\2026-04-30-easing-cheatsheet.md ---
+        2026-04-30-test.md
+        // --- Start File: D:\projects\dev\cholushkin.github.io\_posts\2026-04-30-test.md ---
+            ---
+            layout: post
+            title: "test"
+            date: 2026-04-30
+            categories: [projects]
+            ---
+            hello
+        // --- End File: D:\projects\dev\cholushkin.github.io\_posts\2026-04-30-test.md ---
+    assets
+        thumbs
+            default.jpg
+            easings.jpg
+    cheatsheets
+        easings.html
     Tree.log
+    about.md
+    // --- Start File: D:\projects\dev\cholushkin.github.io\about.md ---
+        ---
+        layout: default
+        title: About
+        permalink: /about/
+        ---
+        # About
+        About this site.
+    // --- End File: D:\projects\dev\cholushkin.github.io\about.md ---
+    cheatsheets.md
+    // --- Start File: D:\projects\dev\cholushkin.github.io\cheatsheets.md ---
+        ---
+        layout: default
+        title: Cheatsheets
+        permalink: /cheatsheets/
+        ---
+        <h1>📚 Cheatsheets</h1>
+        <div id="cheatsheets"></div>
+        <script>
+        const cheatsheets = [
+          {
+            title: "Easings",
+            url: "/cheatsheets/easings.html",
+            categories: ["javascript", "basics"],
+            thumbnail: "/assets/thumbs/easings.jpg"
+          },
+          {
+            title: "Unity FPS Controller",
+            url: "/cheatsheets/fps-demo/",
+            categories: ["unity", "gamedev"],
+            thumbnail: "/assets/thumbs/default.jpg"
+          }
+        ];
+        </script>
+        <script>
+        function renderCheatsheets() {
+          const container = document.getElementById("cheatsheets");
+          container.innerHTML = "";
+          const COLUMNS = 2;
+          container.style.display = "grid";
+          container.style.gridTemplateColumns = `repeat(${COLUMNS}, 1fr)`;
+          container.style.gap = "16px";
+          cheatsheets.forEach(item => {
+            const el = document.createElement("div");
+            el.style.border = "1px solid #eee";
+            el.style.padding = "16px";
+            el.style.borderRadius = "10px";
+            el.style.background = "white";
+            el.style.cursor = "pointer";
+            el.style.display = "flex";
+            el.style.flexDirection = "column";
+            el.style.justifyContent = "space-between";
+            el.onclick = () => {
+              window.location.href = item.url;
+            };
+            el.innerHTML = `
+        	  <div>
+        		<div style="
+        		  width:100%;
+        		  aspect-ratio: 5 / 3;
+        		  background:#f0f0f0;
+        		  border-radius:6px;
+        		  margin-bottom:10px;
+        		  overflow:hidden;
+        		">
+        		  ${item.thumbnail ? `
+        			<img src="${item.thumbnail}" style="
+        			  width:100%;
+        			  height:100%;
+        			  object-fit:cover;
+        			  display:block;
+        			">
+        		  ` : ``}
+        		</div>
+        		<h3 style="margin:0 0 6px 0;">${item.title}</h3>
+        	  </div>
+        	  <div style="text-align:center; margin:12px 0; font-weight:500;">
+        		Open →
+        	  </div>
+        	  <div style="font-size:12px; color:#777;">
+        		${item.categories.map(c => `#${c}`).join(" ")}
+        	  </div>
+        	`;
+            container.appendChild(el);
+          });
+        }
+        renderCheatsheets();
+        </script>
+    // --- End File: D:\projects\dev\cholushkin.github.io\cheatsheets.md ---
     index.html
-    // --- Start File: D:\projects\dev\cholushkin.github.io\index.html ---
-        ---
-        layout: default
-        title: Home
-        ---
-        <h1>📰 Blog</h1>
-        <h2>🆕 Latest Posts</h2>
-        <ul>
-        {% for post in site.posts limit:5 %}
-          <li>
-            <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
-            <small>{{ post.date | date: "%Y-%m-%d" }}</small><br>
-            {% for category in post.categories %}
-              <small><a href="/{{ category }}/">#{{ category }}</a></small>
-            {% endfor %}
-          </li>
-        {% endfor %}
-        </ul>
-        <hr>
-        <h2>💭 Thoughts</h2>
-        <ul>
-        {% for post in site.categories.thoughts limit:3 %}
-          <li>
-            <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
-            {% for category in post.categories %}
-              <small><a href="/{{ category }}/">#{{ category }}</a></small>
-            {% endfor %}
-          </li>
-        {% endfor %}
-        </ul>
-        <p><a href="/thoughts/">→ View all Thoughts</a></p>
-        <hr>
-        <h2>🚀 Projects</h2>
-        <ul>
-        {% for post in site.categories.projects limit:3 %}
-          <li>
-            <a href="{{ post.url }}"><strong>{{ post.title }}</strong></a><br>
-            {% for category in post.categories %}
-              <small><a href="/{{ category }}/">#{{ category }}</a></small>
-            {% endfor %}
-          </li>
-        {% endfor %}
-        </ul>
-        <p><a href="/projects/">→ View all Projects</a></p>
-    // --- End File: D:\projects\dev\cholushkin.github.io\index.html ---
-    projects.md
-    // --- Start File: D:\projects\dev\cholushkin.github.io\projects.md ---
-        ---
-        layout: default
-        title: Projects
-        permalink: /projects/
-        ---
-        # Projects
-        <ul>
-        {% for post in site.categories.projects %}
-          <li>
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            ({{ post.date | date: "%Y-%m-%d" }})
-          </li>
-        {% endfor %}
-        </ul>
-    // --- End File: D:\projects\dev\cholushkin.github.io\projects.md ---
     readme.md
     // --- Start File: D:\projects\dev\cholushkin.github.io\readme.md ---
         # 📰 Blog
-        A minimal news-style blog built with Markdown and static generation using GitHub Pages.
-        Posts are written in Markdown and organized with categories like **thoughts** and **projects**, making it simple to manage content without a traditional CMS.
+        A minimal news-style blog built with Markdown, Jekyll, and GitHub Pages, enhanced with a lightweight client-side UI.
+        Posts are written in Markdown and organized with categories like **thoughts** and **projects**, providing a simple CMS-like workflow without a traditional backend.
         ## 🚀 Live Site
         👉 https://cholushkin.github.io/
         ## ✍️ How it works
-        * Posts live in the `_posts/` folder as Markdown files
-        * Categories are defined in frontmatter
-        * Jekyll automatically builds and groups content
-        * No backend required — fully static
+        - Posts live in the `_posts/` folder as Markdown files
+        - Categories are defined in frontmatter
+        - Jekyll builds the site into static files
+        - A small JavaScript layer adds:
+          - filtering by category
+          - pagination ("load more")
+          - dynamic post previews
+        👉 No backend required — everything runs in the browser
         ## 📂 Structure
         ```
         _posts/        # blog posts (Markdown)
         _layouts/      # page layouts
-        index.md       # homepage
-        thoughts.md    # category page
-        projects.md    # category page
+        index.html     # homepage (dynamic UI)
+        about.md       # about page
+        cheatsheets.md # cheatsheets page
         ```
         ## 🧠 Goal
         To create a simple, Git-based CMS-like blog system that is:
         * easy to maintain
         * fast
-        * fully static
+        * flexible (static + interactive)
         ---
+        ## ⚙️ Tech
+        * GitHub Pages (hosting)
+        * Jekyll (build)
+        * Vanilla JavaScript (client-side interactivity)
     // --- End File: D:\projects\dev\cholushkin.github.io\readme.md ---
-    thoughts.md
-    // --- Start File: D:\projects\dev\cholushkin.github.io\thoughts.md ---
-        ---
-        layout: default
-        title: Thoughts
-        permalink: /thoughts/
-        ---
-        # Thoughts
-        <ul>
-        {% for post in site.categories.thoughts %}
-          <li>
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            ({{ post.date | date: "%Y-%m-%d" }})
-          </li>
-        {% endfor %}
-        </ul>
-    // --- End File: D:\projects\dev\cholushkin.github.io\thoughts.md ---
