@@ -4,7 +4,7 @@ title: Snapshots
 permalink: /snapshots/
 ---
 
-<h1>Snapshots</h1>
+<h1>🖼️ Snapshots</h1>
 
 <ul>
 {% for post in site.posts %}

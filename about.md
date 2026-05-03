@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-# About
+# 🩷 About
 
 Hi, I’m Maxim.
 
@@ -31,4 +31,4 @@ I focus on full-cycle development — taking ideas from rough experiments to fin
 I usually have many game ideas in motion, with 1–3 larger projects evolving in parallel.  
 Long-term, I aim to build a studio where I can bring my core game ideas to life.
 
-🧾 Personal card (all links & portfolio): https://sites.google.com/view/cholushkinmaximcard/home
+🧾 [Personal card (all links & portfolio)](https://sites.google.com/view/cholushkinmaximcard/home)

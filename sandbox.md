@@ -4,7 +4,7 @@ title: Sandbox
 permalink: /sandbox/
 ---
 
-<h1>Sandbox</h1>
+<h1>🧪 Sandbox</h1>
 
 <ul>
 {% for post in site.posts %}
