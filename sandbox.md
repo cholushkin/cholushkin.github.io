@@ -13,7 +13,7 @@ const sandbox = [
     {
       title: "Island Generator",
       url: "/sandbox/islandgen/",
-      description: "Experiment in generating islands using masks, noise, syntax-based rules, and marching cubes.",
+      description: "Experiment in generating islands using masks, noise, syntex, and marching cubes.",
       thumbnail: "/assets/thumbs/islandgen.jpg",
       tags: ["terrain", "procedural", "marching-cubes", "generation"]
     }
@@ -73,10 +73,6 @@ function renderSandbox() {
         <div style="font-size:13px; color:#555; margin-bottom:10px;">
           ${item.description || ""}
         </div>
-      </div>
-
-      <div style="text-align:center; margin:12px 0; font-weight:500;">
-        Open Demo ↗
       </div>
 
       <div style="font-size:12px; color:#777;">

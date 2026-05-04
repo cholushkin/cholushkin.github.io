@@ -6,11 +6,12 @@ permalink: /sandbox/islandgen/
 
 ## Demo
 
-<iframe 
-  src="https://cholushkin.github.io/island-generator-prototype-io"
-  style="width:100%; height:500px; border:none; border-radius:8px;"
-  loading="lazy">
-</iframe>
+<div style="position:relative; padding-bottom:56%; height:0;">
+  <iframe 
+    src="https://cholushkin.github.io/island-generator-prototype-io"
+    style="position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:8px;">
+  </iframe>
+</div>
 
 # Island Generator
 
