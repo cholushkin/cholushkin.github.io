@@ -1,0 +1,32 @@
+---
+layout: default
+title: Island Generator
+permalink: /sandbox/islandgen/
+---
+
+## Demo
+
+<iframe 
+  src="https://cholushkin.github.io/island-generator-prototype-io"
+  style="width:100%; height:500px; border:none; border-radius:8px;"
+  loading="lazy">
+</iframe>
+
+# Island Generator
+
+Experiment in generating islands using masks, noise, syntax-based rules, and marching cubes.
+
+## Overview
+
+This experiment explores procedural island generation by combining multiple techniques:
+
+- mask-based shaping of landmass
+- layered noise for terrain variation
+- [syntex](https://github.com/cholushkin/SynTex) generated texture 
+- marching cubes for city model
+
+## Goals
+
+- generate believable island silhouettes  
+- maintain control over structure while allowing variation  
+- experiment with combining deterministic and stochastic systems  
