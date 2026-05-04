@@ -13,9 +13,12 @@ permalink: /sandbox/islandgen/
   </iframe>
 </div>
 
+👉 [Full demo ↗](https://cholushkin.github.io/island-generator-prototype-io)
+👉 [Demo repo ↗](https://github.com/cholushkin/island-generator-prototype-io)
+
 # Island Generator
 
-Experiment in generating islands using masks, noise, syntax-based rules, and marching cubes.
+Experiment in generating islands using masks, noise, syntex, and marching cubes.
 
 ## Overview
 
