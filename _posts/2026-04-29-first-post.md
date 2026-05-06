@@ -8,9 +8,10 @@ categories: [thoughts, projects]
 # ✨ Blog Concept: Ideas, Thoughts & Updates
 
 * random insights
-* half-baked ideas
-* “wait… what if?” moments
+* my thihnking bubble for the future me
+* behind-the-scenes decisions
 * personal philosophies
+* sketches of ideas
 
 Also...
 
@@ -19,7 +20,6 @@ Also...
 * progress updates
 * lessons learned
 * failures
-* behind-the-scenes decisions
 * dev tools
 * productivity hacks
 * niche gems from the internet
@@ -28,16 +28,12 @@ Also...
 * investigations
 * comparisions
 * messy notes
-* sketches of ideas
 * connections between unrelated things
 * thoughts from my Obsidian
 * skills I am learning
 * habits I am building
 * reflections every month
-* industry trends
 * tools everyone loves but you don’t
 * things that are overrated/underrated
 * This site isn’t a portfolio. It’s a **thinking space**.
-* Messy is allowed.
-* Interesting is the goal.
 * Absolute Nordic minimalism — no unnecessary bells and whistles.
