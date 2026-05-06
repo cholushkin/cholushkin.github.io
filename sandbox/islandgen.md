@@ -15,6 +15,8 @@ permalink: /sandbox/islandgen/
 
 👉 [Full demo ↗](https://cholushkin.github.io/island-generator-prototype-io)
 👉 [Demo repo ↗](https://github.com/cholushkin/island-generator-prototype-io)
+👉 [Readme ↗](https://github.com/cholushkin/island-generator-prototype-io/blob/master/README.md)
+👉 [Ideas ↗](https://github.com/cholushkin/island-generator-prototype-io/blob/master/ideas.md)
 👉 [Syntex ↗](https://github.com/cholushkin/SynTex) 
 
 
