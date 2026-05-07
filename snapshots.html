@@ -25,6 +25,7 @@ permalink: /snapshots/
 <style>
 .container {
   max-width: 1400px !important;
+  margin: 40px auto !important;
 }
 
 * {
@@ -44,8 +45,10 @@ permalink: /snapshots/
 
 .snapshot-card {
   background: white;
+
   border-radius: 12px;
   overflow: hidden;
+
   border: 1px solid #e8e8e8;
 }
 
@@ -53,37 +56,68 @@ permalink: /snapshots/
   width: 100%;
   height: 240px;
 
-  display: grid;
-  gap: 2px;
+  position: relative;
 
-  background: #ddd;
+  background: #f0f0f0;
   overflow: hidden;
 }
 
-.snapshot-images.count-1 {
-  grid-template-columns: 1fr;
+.snapshot-slide {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.2s;
 }
 
-.snapshot-images.count-2 {
-  grid-template-columns: 1fr 1fr;
+.snapshot-slide.active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
-.snapshot-images.count-3,
-.snapshot-images.count-4,
-.snapshot-images.count-5,
-.snapshot-images.count-6 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.snapshot-images img {
+.snapshot-slide img {
   width: 100%;
   height: 100%;
 
   object-fit: contain;
 
-  background: #f0f0f0;
   display: block;
   cursor: pointer;
+
+  background: #f0f0f0;
+}
+
+.snapshot-dots {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 10px;
+
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+
+  z-index: 5;
+}
+
+.snapshot-dot {
+  width: 10px;
+  height: 10px;
+
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.5);
+
+  border: 1px solid rgba(0,0,0,0.2);
+
+  cursor: pointer;
+}
+
+.snapshot-dot.active {
+  background: white;
 }
 
 .snapshot-text {
@@ -119,6 +153,7 @@ permalink: /snapshots/
 .viewer {
   position: fixed;
   inset: 0;
+
   z-index: 9999;
 }
 
@@ -198,7 +233,8 @@ const MAX_VISIBLE = 120;
 
 let currentIndex = 0;
 
-const grid = document.getElementById("snapshot-grid");
+const grid =
+  document.getElementById("snapshot-grid");
 
 const loadMoreBtn =
   document.getElementById("loadMoreBtn");
@@ -263,7 +299,8 @@ function cleanupOldCards() {
 
 function createCard(entry) {
 
-  const card = document.createElement("div");
+  const card =
+    document.createElement("div");
 
   card.className = "snapshot-card";
 
@@ -271,11 +308,23 @@ function createCard(entry) {
     document.createElement("div");
 
   imageWrap.className =
-    `snapshot-images count-${entry.images.length}`;
+    "snapshot-images";
 
-  entry.images.forEach(imageName => {
+  let currentSlide = 0;
 
-    const img = document.createElement("img");
+  entry.images.forEach((imageName, index) => {
+
+    const slide =
+      document.createElement("div");
+
+    slide.className = "snapshot-slide";
+
+    if (index === 0) {
+      slide.classList.add("active");
+    }
+
+    const img =
+      document.createElement("img");
 
     const thumbName = imageName
       .replace(".jpg", ".webp")
@@ -295,10 +344,66 @@ function createCard(entry) {
       openViewer(imageName, entry.text);
     };
 
-    imageWrap.appendChild(img);
+    slide.appendChild(img);
+
+    imageWrap.appendChild(slide);
   });
 
-  const text = document.createElement("div");
+  if (entry.images.length > 1) {
+
+    const dots =
+      document.createElement("div");
+
+    dots.className = "snapshot-dots";
+
+    entry.images.forEach((_, index) => {
+
+      const dot =
+        document.createElement("div");
+
+      dot.className = "snapshot-dot";
+
+      if (index === 0) {
+        dot.classList.add("active");
+      }
+
+      dot.onclick = () => {
+
+        currentSlide = index;
+
+        const slides =
+          imageWrap.querySelectorAll(
+            ".snapshot-slide"
+          );
+
+        const allDots =
+          dots.querySelectorAll(
+            ".snapshot-dot"
+          );
+
+        slides.forEach(s =>
+          s.classList.remove("active")
+        );
+
+        allDots.forEach(d =>
+          d.classList.remove("active")
+        );
+
+        slides[currentSlide]
+          .classList.add("active");
+
+        allDots[currentSlide]
+          .classList.add("active");
+      };
+
+      dots.appendChild(dot);
+    });
+
+    imageWrap.appendChild(dots);
+  }
+
+  const text =
+    document.createElement("div");
 
   text.className = "snapshot-text";
   text.innerText = entry.text;
