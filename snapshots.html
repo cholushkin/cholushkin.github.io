@@ -1,0 +1,104 @@
+---
+    grid.appendChild(createCard(entry));
+  });
+
+  currentIndex += PAGE_SIZE;
+
+  cleanupOldCards();
+
+  if (currentIndex >= snapshots.length) {
+    loadMoreBtn.style.display = "none";
+  }
+}
+
+function cleanupOldCards() {
+  const cards = grid.querySelectorAll(".snapshot-card");
+
+  if (cards.length <= MAX_VISIBLE) return;
+
+  const removeCount = cards.length - MAX_VISIBLE;
+
+  for (let i = 0; i < removeCount; i++) {
+    cards[i].remove();
+  }
+}
+
+function createCard(entry) {
+  const card = document.createElement("div");
+  card.className = "snapshot-card";
+
+  const imageWrap = document.createElement("div");
+
+  if (entry.images.length === 1) {
+    imageWrap.className = "snapshot-images single";
+  }
+  else if (entry.images.length === 2) {
+    imageWrap.className = "snapshot-images double";
+  }
+  else {
+    imageWrap.className = "snapshot-images multi";
+  }
+
+  entry.images.forEach(imageName => {
+    const img = document.createElement("img");
+
+    const thumbName = imageName
+      .replace(".jpg", ".webp")
+      .replace(".png", ".webp");
+
+    img.src = `/assets/snapshots/thumbs/${thumbName}`;
+
+    img.loading = "lazy";
+
+    img.onclick = () => {
+      openViewer(imageName, entry.text);
+    };
+
+    imageWrap.appendChild(img);
+  });
+
+  const text = document.createElement("div");
+  text.className = "snapshot-text";
+  text.innerText = entry.text;
+
+  card.appendChild(imageWrap);
+  card.appendChild(text);
+
+  return card;
+}
+
+function openViewer(imageName, text) {
+  viewer.classList.remove("hidden");
+
+  viewerImage.src = `/assets/snapshots/full/${imageName}`;
+  viewerText.innerText = text;
+
+  document.body.style.overflow = "hidden";
+}
+
+function closeViewerFn() {
+  viewer.classList.add("hidden");
+
+  viewerImage.src = "";
+
+  document.body.style.overflow = "";
+}
+
+closeViewer.onclick = closeViewerFn;
+
+viewer.onclick = e => {
+  if (e.target.classList.contains("viewer-backdrop")) {
+    closeViewerFn();
+  }
+};
+
+window.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeViewerFn();
+  }
+});
+
+loadMoreBtn.onclick = renderNextPage;
+
+loadSnapshots();
+</script>
