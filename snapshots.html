@@ -27,9 +27,18 @@ permalink: /snapshots/
   max-width: 1400px !important;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 #snapshot-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(320px, 1fr)
+  );
+
   gap: 18px;
 }
 
@@ -41,34 +50,45 @@ permalink: /snapshots/
 }
 
 .snapshot-images {
+  width: 100%;
+  height: 240px;
+
   display: grid;
   gap: 2px;
+
   background: #ddd;
+  overflow: hidden;
 }
 
-.snapshot-images.single {
+.snapshot-images.count-1 {
   grid-template-columns: 1fr;
 }
 
-.snapshot-images.double {
+.snapshot-images.count-2 {
   grid-template-columns: 1fr 1fr;
 }
 
-.snapshot-images.multi {
+.snapshot-images.count-3,
+.snapshot-images.count-4,
+.snapshot-images.count-5,
+.snapshot-images.count-6 {
   grid-template-columns: repeat(3, 1fr);
 }
 
 .snapshot-images img {
   width: 100%;
-  height: 240px;
-  object-fit: cover;
-  cursor: pointer;
+  height: 100%;
+
+  object-fit: contain;
+
+  background: #f0f0f0;
   display: block;
-  background: #eee;
+  cursor: pointer;
 }
 
 .snapshot-text {
   padding: 12px;
+
   font-size: 14px;
   line-height: 1.4;
   color: #333;
@@ -76,6 +96,7 @@ permalink: /snapshots/
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
+
   overflow: hidden;
 
   min-height: 58px;
@@ -83,10 +104,14 @@ permalink: /snapshots/
 
 #loadMoreBtn {
   margin: 30px auto;
+
   display: block;
+
   padding: 12px 18px;
+
   border-radius: 10px;
   border: 1px solid #ddd;
+
   background: white;
   cursor: pointer;
 }
@@ -104,6 +129,7 @@ permalink: /snapshots/
 .viewer-backdrop {
   position: absolute;
   inset: 0;
+
   background: rgba(0,0,0,0.92);
 }
 
@@ -116,34 +142,41 @@ permalink: /snapshots/
 
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
 
   padding: 30px;
-  box-sizing: border-box;
 }
 
 #viewerImage {
   max-width: 95%;
   max-height: 80vh;
+
   object-fit: contain;
+
   border-radius: 8px;
 }
 
 .viewer-text {
   margin-top: 18px;
+
   max-width: 900px;
+
   text-align: center;
+
   color: white;
   line-height: 1.5;
 }
 
 .viewer-close {
   position: absolute;
+
   top: 20px;
   right: 20px;
 
   background: rgba(255,255,255,0.1);
+
   border: none;
   color: white;
 
@@ -151,6 +184,7 @@ permalink: /snapshots/
   height: 40px;
 
   border-radius: 999px;
+
   cursor: pointer;
   font-size: 18px;
 }
@@ -165,15 +199,27 @@ const MAX_VISIBLE = 120;
 let currentIndex = 0;
 
 const grid = document.getElementById("snapshot-grid");
-const loadMoreBtn = document.getElementById("loadMoreBtn");
 
-const viewer = document.getElementById("viewer");
-const viewerImage = document.getElementById("viewerImage");
-const viewerText = document.getElementById("viewerText");
-const closeViewer = document.getElementById("closeViewer");
+const loadMoreBtn =
+  document.getElementById("loadMoreBtn");
+
+const viewer =
+  document.getElementById("viewer");
+
+const viewerImage =
+  document.getElementById("viewerImage");
+
+const viewerText =
+  document.getElementById("viewerText");
+
+const closeViewer =
+  document.getElementById("closeViewer");
 
 async function loadSnapshots() {
-  const response = await fetch("{{ site.baseurl }}/data/snapshots.json");
+
+  const response = await fetch(
+    "{{ site.baseurl }}/data/snapshots.json"
+  );
 
   snapshots = await response.json();
 
@@ -181,7 +227,11 @@ async function loadSnapshots() {
 }
 
 function renderNextPage() {
-  const next = snapshots.slice(currentIndex, currentIndex + PAGE_SIZE);
+
+  const next = snapshots.slice(
+    currentIndex,
+    currentIndex + PAGE_SIZE
+  );
 
   next.forEach(entry => {
     grid.appendChild(createCard(entry));
@@ -197,11 +247,14 @@ function renderNextPage() {
 }
 
 function cleanupOldCards() {
-  const cards = grid.querySelectorAll(".snapshot-card");
+
+  const cards =
+    grid.querySelectorAll(".snapshot-card");
 
   if (cards.length <= MAX_VISIBLE) return;
 
-  const removeCount = cards.length - MAX_VISIBLE;
+  const removeCount =
+    cards.length - MAX_VISIBLE;
 
   for (let i = 0; i < removeCount; i++) {
     cards[i].remove();
@@ -209,32 +262,31 @@ function cleanupOldCards() {
 }
 
 function createCard(entry) {
+
   const card = document.createElement("div");
+
   card.className = "snapshot-card";
 
-  const imageWrap = document.createElement("div");
+  const imageWrap =
+    document.createElement("div");
 
-  if (entry.images.length === 1) {
-    imageWrap.className = "snapshot-images single";
-  }
-  else if (entry.images.length === 2) {
-    imageWrap.className = "snapshot-images double";
-  }
-  else {
-    imageWrap.className = "snapshot-images multi";
-  }
+  imageWrap.className =
+    `snapshot-images count-${entry.images.length}`;
 
   entry.images.forEach(imageName => {
+
     const img = document.createElement("img");
 
     const thumbName = imageName
       .replace(".jpg", ".webp")
       .replace(".png", ".webp");
 
-    img.src = `{{ site.baseurl }}/assets/snapshots/thumbs/${thumbName}`;
+    img.src =
+      `{{ site.baseurl }}/assets/snapshots/thumbs/${thumbName}`;
 
     img.onerror = () => {
-      img.src = "{{ site.baseurl }}/assets/default-thumb.webp";
+      img.src =
+        "{{ site.baseurl }}/assets/default-thumb.webp";
     };
 
     img.loading = "lazy";
@@ -247,6 +299,7 @@ function createCard(entry) {
   });
 
   const text = document.createElement("div");
+
   text.className = "snapshot-text";
   text.innerText = entry.text;
 
@@ -257,15 +310,19 @@ function createCard(entry) {
 }
 
 function openViewer(imageName, text) {
+
   viewer.classList.remove("hidden");
 
-  viewerImage.src = `{{ site.baseurl }}/assets/snapshots/full/${imageName}`;
+  viewerImage.src =
+    `{{ site.baseurl }}/assets/snapshots/full/${imageName}`;
+
   viewerText.innerText = text;
 
   document.body.style.overflow = "hidden";
 }
 
 function closeViewerFn() {
+
   viewer.classList.add("hidden");
 
   viewerImage.src = "";
@@ -276,12 +333,18 @@ function closeViewerFn() {
 closeViewer.onclick = closeViewerFn;
 
 viewer.onclick = e => {
-  if (e.target.classList.contains("viewer-backdrop")) {
+
+  if (
+    e.target.classList.contains(
+      "viewer-backdrop"
+    )
+  ) {
     closeViewerFn();
   }
 };
 
 window.addEventListener("keydown", e => {
+
   if (e.key === "Escape") {
     closeViewerFn();
   }

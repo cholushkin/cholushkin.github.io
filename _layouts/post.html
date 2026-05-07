@@ -5,6 +5,10 @@
   <title>{{ page.title }}</title>
 
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: system-ui, -apple-system, sans-serif;
       max-width: 800px;
@@ -48,9 +52,15 @@
 <body>
 
 <nav>
-  <a href="/">Home</a>
-  <a href="/thoughts/">Thoughts</a>
-  <a href="/projects/">Projects</a>
+  <a href="{{ site.baseurl }}/">Home</a>
+
+  <a href="{{ site.baseurl }}/thoughts/">
+    Thoughts
+  </a>
+
+  <a href="{{ site.baseurl }}/projects/">
+    Projects
+  </a>
 </nav>
 
 <article>
@@ -59,8 +69,11 @@
   <p>
     <small>
       {{ page.date | date: "%Y-%m-%d" }} —
+
       {% for category in page.categories %}
-        <a href="/{{ category }}/">#{{ category }}</a>
+        <a href="{{ site.baseurl }}/{{ category }}/">
+          #{{ category }}
+        </a>
       {% endfor %}
     </small>
   </p>
