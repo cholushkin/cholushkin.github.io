@@ -2,118 +2,121 @@
   {
     "images": ["tg.jpg"],
     "text": "TowerGenerator current result",
-    "date": "2026-05-07"
+    "priority": 100
   },
 
   {
     "images": ["tg-render.jpg", "tg-render2.jpg"],
     "text": "Possible renders of TowerGenerator",
-    "date": "2026-05-06"
+    "priority": 100
+  },
+
+  {
+    "images": ["maxim-cholushkin-screenshot-1.jpg"],
+    "text": "",
+    "priority": 90
   },
 
   {
     "images": ["0aa7e1c8-e87b-469c-a56f-f8e86b15bf25.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["385850cb-9b03-47d8-8468-8052119bbde6.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["416f4cc9-e6be-4294-af97-69df8299ba18.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["4e4e3db0-a8b1-4739-8ad6-4a9973cb075f.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["78bfb321-730a-4a13-b97e-134fcbd284e6.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["813eb494-538c-4c39-8935-7fd64795ce48.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["8683579d-611c-4e61-8406-fa23d99a8c9c.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["901524a5-41b4-4bd4-8a16-8402653d60e7.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["96ebc992-c398-4088-8a0e-8750e1a2d094.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["9a0bbade-86d9-4429-92af-6d79b98f1628.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["b997bcaf-5766-483d-ba79-117fe01db27a.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["ca68b97c-1ac4-4b0f-ad35-29ee34b9d4e1.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
   {
     "images": ["d2bccd6c-379a-4088-8a85-4066de933d0e.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 80
   },
-  {
-    "images": ["maxim-cholushkin-screenshot-1.jpg"],
-    "text": "",
-    "date": "2026-05-07"
-  },
-  {
-    "images": ["Screenshot_1.jpg"],
-    "text": "",
-    "date": "2025-05-03"
-  },
-  {
-    "images": ["Screenshot_11.jpg"],
-    "text": "",
-    "date": "2026-05-07"
-  },
+
   {
     "images": ["Screenshot_15.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 70
   },
   {
     "images": ["Screenshot_17.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 70
   },
   {
-    "images": ["Screenshot_2.jpg"],
+    "images": ["Screenshot_11.jpg"],
     "text": "",
-    "date": "2025-12-01"
-  },
-  {
-    "images": ["Screenshot_4.jpg"],
-    "text": "",
-    "date": "2025-12-01"
+    "priority": 70
   },
   {
     "images": ["Screenshot_6.jpg"],
     "text": "",
-    "date": "2026-05-07"
+    "priority": 70
+  },
+
+  {
+    "images": ["Screenshot_2.jpg"],
+    "text": "",
+    "priority": 60
+  },
+  {
+    "images": ["Screenshot_1.jpg"],
+    "text": "",
+    "priority": 60
+  },
+  {
+    "images": ["Screenshot_4.jpg"],
+    "text": "",
+    "priority": 60
   }
 ]

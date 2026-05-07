@@ -273,9 +273,13 @@ async function loadSnapshots() {
     "{{ site.baseurl }}/data/snapshots.json"
   );
 
-  snapshots = await response.json();
+    snapshots = await response.json();
 
-  renderNextPage();
+    snapshots.sort(
+      (a, b) => (b.priority || 0) - (a.priority || 0)
+    );
+
+    renderNextPage();
 }
 
 function renderNextPage() {
