@@ -1,13 +1,13 @@
 [
   {
     "images": ["tg.jpg"],
-    "text": "Terrain erosion test.",
+    "text": "TowerGenerator current result",
     "date": "2026-05-07"
   },
 
   {
     "images": ["tg-render.jpg", "tg-render2.jpg", "tg-render2.jpg","tg-render2.jpg","tg-render2.jpg"],
-    "text": "Different angles of crystal shader.",
+    "text": "Possible renders of TowerGenerator",
     "date": "2026-05-06"
   }
 ]
