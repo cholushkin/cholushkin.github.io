@@ -332,7 +332,12 @@ function createCard(entry) {
 
   let currentSlide = 0;
 
-  entry.images.forEach((imageName, index) => {
+  const images =
+    entry.images && entry.images.length
+      ? entry.images
+      : ["__default__"];
+
+  images.forEach((imageName, index) => {
 
     const slide =
       document.createElement("div");
@@ -346,12 +351,20 @@ function createCard(entry) {
     const img =
       document.createElement("img");
 
-    const thumbName = imageName
-      .replace(".jpg", ".webp")
-      .replace(".png", ".webp");
+    if (imageName === "__default__") {
 
-    img.src =
-      `{{ site.baseurl }}/assets/snapshots/thumbs/${thumbName}`;
+      img.src =
+        "{{ site.baseurl }}/assets/default-thumb.webp";
+
+    } else {
+
+      const thumbName = imageName
+        .replace(".jpg", ".webp")
+        .replace(".png", ".webp");
+
+      img.src =
+        `{{ site.baseurl }}/assets/snapshots/thumbs/${thumbName}`;
+    }
 
     img.onerror = () => {
       img.src =
@@ -361,6 +374,11 @@ function createCard(entry) {
     img.loading = "lazy";
 
     img.onclick = () => {
+
+      if (imageName === "__default__") {
+        return;
+      }
+
       openViewer(imageName, entry.text);
     };
 
@@ -369,14 +387,14 @@ function createCard(entry) {
     imageWrap.appendChild(slide);
   });
 
-  if (entry.images.length > 1) {
+  if (images.length > 1) {
 
     const dots =
       document.createElement("div");
 
     dots.className = "snapshot-dots";
 
-    entry.images.forEach((_, index) => {
+    images.forEach((_, index) => {
 
       const dot =
         document.createElement("div");
@@ -426,14 +444,13 @@ function createCard(entry) {
     document.createElement("div");
 
   text.className = "snapshot-text";
-  text.innerText = entry.text;
+  text.innerText = entry.text || "";
 
   card.appendChild(imageWrap);
   card.appendChild(text);
 
   return card;
 }
-
 function openViewer(imageName, text) {
 
   viewer.classList.remove("hidden");
