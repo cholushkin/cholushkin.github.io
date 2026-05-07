@@ -1,4 +1,185 @@
 ---
+layout: default
+title: Snapshots
+permalink: /snapshots/
+---
+
+<h1>🖼️ Snapshots</h1>
+
+<div id="snapshot-grid"></div>
+
+<button id="loadMoreBtn">Load older</button>
+
+<div id="viewer" class="viewer hidden">
+  <div class="viewer-backdrop"></div>
+
+  <div class="viewer-content">
+    <button id="closeViewer" class="viewer-close">✕</button>
+
+    <img id="viewerImage" src="">
+
+    <div id="viewerText" class="viewer-text"></div>
+  </div>
+</div>
+
+<style>
+#snapshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 18px;
+}
+
+.snapshot-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #e8e8e8;
+}
+
+.snapshot-images {
+  display: grid;
+  gap: 2px;
+  background: #ddd;
+}
+
+.snapshot-images.single {
+  grid-template-columns: 1fr;
+}
+
+.snapshot-images.double {
+  grid-template-columns: 1fr 1fr;
+}
+
+.snapshot-images.multi {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.snapshot-images img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  cursor: pointer;
+  display: block;
+  background: #eee;
+}
+
+.snapshot-text {
+  padding: 12px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  min-height: 58px;
+}
+
+#loadMoreBtn {
+  margin: 30px auto;
+  display: block;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+}
+
+.viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.viewer.hidden {
+  display: none;
+}
+
+.viewer-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.92);
+}
+
+.viewer-content {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+#viewerImage {
+  max-width: 95%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.viewer-text {
+  margin-top: 18px;
+  max-width: 900px;
+  text-align: center;
+  color: white;
+  line-height: 1.5;
+}
+
+.viewer-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: white;
+
+  width: 40px;
+  height: 40px;
+
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 18px;
+}
+</style>
+
+<script>
+let snapshots = [];
+
+const PAGE_SIZE = 20;
+const MAX_VISIBLE = 120;
+
+let currentIndex = 0;
+
+const grid = document.getElementById("snapshot-grid");
+const loadMoreBtn = document.getElementById("loadMoreBtn");
+
+const viewer = document.getElementById("viewer");
+const viewerImage = document.getElementById("viewerImage");
+const viewerText = document.getElementById("viewerText");
+const closeViewer = document.getElementById("closeViewer");
+
+async function loadSnapshots() {
+  const response = await fetch("{{ site.baseurl }}/data/snapshots.json");
+
+  snapshots = await response.json();
+
+  renderNextPage();
+}
+
+function renderNextPage() {
+  const next = snapshots.slice(currentIndex, currentIndex + PAGE_SIZE);
+
+  next.forEach(entry => {
     grid.appendChild(createCard(entry));
   });
 
@@ -46,7 +227,11 @@ function createCard(entry) {
       .replace(".jpg", ".webp")
       .replace(".png", ".webp");
 
-    img.src = `/assets/snapshots/thumbs/${thumbName}`;
+    img.src = `{{ site.baseurl }}/assets/snapshots/thumbs/${thumbName}`;
+
+    img.onerror = () => {
+      img.src = "{{ site.baseurl }}/assets/default-thumb.webp";
+    };
 
     img.loading = "lazy";
 
@@ -70,7 +255,7 @@ function createCard(entry) {
 function openViewer(imageName, text) {
   viewer.classList.remove("hidden");
 
-  viewerImage.src = `/assets/snapshots/full/${imageName}`;
+  viewerImage.src = `{{ site.baseurl }}/assets/snapshots/full/${imageName}`;
   viewerText.innerText = text;
 
   document.body.style.overflow = "hidden";
