@@ -24,7 +24,7 @@ permalink: /snapshots/
 
 <style>
 .container {
-  max-width: 1400px !important;
+  max-width: 1200px !important;
   margin: 40px auto !important;
 }
 
@@ -36,20 +36,28 @@ permalink: /snapshots/
   display: grid;
 
   grid-template-columns: repeat(
-    auto-fill,
-    minmax(320px, 1fr)
+    auto-fit,
+    320px
   );
+
+  justify-content: center;
 
   gap: 18px;
 }
 
 .snapshot-card {
+  width: 320px;
+
   background: white;
 
-  border-radius: 12px;
+  border-radius: 10px;
+
   overflow: hidden;
 
-  border: 1px solid #e8e8e8;
+  cursor: default;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .snapshot-images {
@@ -92,48 +100,61 @@ permalink: /snapshots/
 .snapshot-dots {
   position: absolute;
 
-  left: 0;
-  right: 0;
+  left: 50%;
   bottom: 10px;
 
+  transform: translateX(-50%);
+
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 8px;
+
+  padding: 6px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.35);
+
+  backdrop-filter: blur(6px);
 
   z-index: 5;
 }
 
 .snapshot-dot {
-  width: 10px;
-  height: 10px;
+  width: 14px;
+  height: 14px;
 
   border-radius: 999px;
 
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.45);
 
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(255,255,255,0.2);
 
   cursor: pointer;
+
+  transition: all 0.15s;
 }
 
 .snapshot-dot.active {
   background: white;
+  transform: scale(1.15);
 }
 
 .snapshot-text {
-  padding: 12px;
+  padding: 14px;
 
-  font-size: 14px;
-  line-height: 1.4;
-  color: #333;
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #555;
+
+  min-height: 72px;
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
 
   overflow: hidden;
-
-  min-height: 58px;
 }
 
 #loadMoreBtn {
