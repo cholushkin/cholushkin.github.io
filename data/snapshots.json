@@ -13,7 +13,7 @@
 
   {
     "images": ["Screenshot_6.jpg"],
-    "text": "Alice in Dreamland: the door and the firt character mockups",
+    "text": "Alice in Dreamland: the door and the first character mockups",
     "priority": 90
   },
 
@@ -23,8 +23,8 @@
     "priority": 80
   },
   {
-    "images": ["385850cb-9b03-47d8-8468-8052119bbde6.jpg"],
-    "text": "Alice in Dreamland: ",
+    "images": ["AliceHeadRealistic.jpg", "AliceHeadStylized.jpg"],
+    "text": "Alice in Dreamland: head searching. Realistic vs Stylized ",
     "priority": 80
   },
   {
