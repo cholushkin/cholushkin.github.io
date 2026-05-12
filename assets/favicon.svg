@@ -1,7 +1,122 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#111111"></rect>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   viewBox="0 0 128 128"
+   version="1.1"
+   id="svg6"
+   sodipodi:docname="favicon.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs6" />
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="22.627417"
+     inkscape:cx="70.843261"
+     inkscape:cy="99.14963"
+     inkscape:window-width="2319"
+     inkscape:window-height="1266"
+     inkscape:window-x="1907"
+     inkscape:window-y="457"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g5" />
+  <!-- outer octagon -->
+  <polygon
+     points="40,8 88,8 120,40 120,88 88,120 40,120 8,88 8,40"
+     fill="#d000ff"
+     id="polygon1" />
+  <!-- white ring -->
+  <polygon
+     points="47,20 81,20 108,47 108,81 81,108 47,108 20,81 20,47"
+     fill="#ffffff"
+     id="polygon2" />
+  <!-- cyan center -->
+  <polygon
+     points="74,30 98,54 98,74 74,98 54,98 30,74 30,54 54,30 "
+     fill="#73e8f7"
+     id="polygon3"
+     transform="matrix(1.1,0,0,1.1,-6.4,-6.4)" />
+  <!-- character -->
+  <g
+     fill="#d000ff"
+     id="g5"
+     transform="matrix(1,0,0,0.93353552,0,7.3110932)">
+    <!-- ears -->
+    <path
+       d="m 38.736849,63.502617 c -10.219443,-9.21094 -9.422112,-27.079812 3.153633,-35.733049 -0.84442,15.293921 7.933523,18.132455 17.994119,24.622383 z"
+       id="path3"
+       sodipodi:nodetypes="cccc"
+       style="stroke-width:1.16629" />
+    <!-- head -->
+    <ellipse
+       cx="64"
+       cy="64"
+       rx="26"
+       ry="22"
+       id="ellipse4" />
+    <!-- neck -->
+    <rect
+       x="59.780319"
+       y="80"
+       width="8.375"
+       height="17.632275"
+       rx="0"
+       id="rect4"
+       style="stroke-width:0.848782" />
+    <!-- shoulders -->
+    <path
+       d="M 42,110 C 53.22532,88.30743 53.25,90.427179 64.25,90.427179 75.25,90.427179 75.30501,88.30743 86,110 Z"
+       id="path5"
+       style="stroke-width:1.04881"
+       sodipodi:nodetypes="cscc" />
+    <path
+       d="m 88.84896,63.502617 c 10.219443,-9.21094 9.422112,-27.079812 -3.153633,-35.733049 0.84442,15.293921 -7.933523,18.132455 -17.994119,24.622383 z"
+       id="path1"
+       sodipodi:nodetypes="cccc"
+       style="stroke-width:1.16629" />
+  </g>
+  <!-- left eye -->
+    <ellipse
+       cx="50.799026"
+       cy="70.407616"
+       fill="#ffffff"
+       id="circle5"
+       style="stroke-width:1.18735"
+       rx="7.1873999"
+       ry="7.0612597">
 
-  <path d="M14 38 L32 18 L50 38" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+      <animate
+        attributeName="fill"
+        values="#ffffff;#ffffff;#d000ff;#ffffff;#ffffff"
+        keyTimes="0;0.48;0.5;0.52;1"
+        dur="5s"
+        repeatCount="indefinite" />
+    </ellipse>
 
-  <path d="M22 38 L32 28 L42 38" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"></path>
+    <!-- right eye -->
+    <ellipse
+       cx="77.200966"
+       cy="70.407616"
+       fill="#ffffff"
+       id="circle6"
+       style="stroke-width:1.18735"
+       rx="7.1873999"
+       ry="7.0612597">
+
+      <animate
+        attributeName="fill"
+        values="#ffffff;#ffffff;#d000ff;#ffffff;#ffffff"
+        keyTimes="0;0.48;0.5;0.52;1"
+        dur="5s"
+        repeatCount="indefinite" />
+    </ellipse>
 </svg>
