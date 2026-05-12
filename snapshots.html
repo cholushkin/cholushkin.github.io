@@ -14,7 +14,11 @@ permalink: /snapshots/
   <div class="viewer-backdrop"></div>
 
   <div class="viewer-content">
+
     <button id="closeViewer" class="viewer-close">✕</button>
+
+    <button id="viewerPrev" class="viewer-arrow left">‹</button>
+    <button id="viewerNext" class="viewer-arrow right">›</button>
 
     <img id="viewerImage" src="">
 
@@ -61,6 +65,45 @@ permalink: /snapshots/
   margin-bottom: 10px;
 
   overflow: hidden;
+}
+
+.snapshot-arrow {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(0,0,0,0.45);
+
+  color: white;
+
+  cursor: pointer;
+
+  z-index: 6;
+
+  opacity: 0;
+
+  transition: opacity 0.15s;
+
+  backdrop-filter: blur(4px);
+}
+
+.snapshot-images:hover .snapshot-arrow {
+  opacity: 1;
+}
+
+.snapshot-arrow.left {
+  left: 10px;
+}
+
+.snapshot-arrow.right {
+  right: 10px;
 }
 
 .snapshot-slide {
@@ -239,15 +282,51 @@ permalink: /snapshots/
   cursor: pointer;
   font-size: 18px;
 }
+
+.viewer-arrow {
+  position: absolute;
+
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 52px;
+  height: 52px;
+
+  border: none;
+  border-radius: 999px;
+
+  background: rgba(255,255,255,0.12);
+
+  color: white;
+
+  font-size: 22px;
+
+  cursor: pointer;
+
+  z-index: 5;
+}
+
+.viewer-arrow.left {
+  left: 20px;
+}
+
+.viewer-arrow.right {
+  right: 20px;
+}
+
 </style>
 
 <script>
+
 let snapshots = [];
 
 const PAGE_SIZE = 20;
 const MAX_VISIBLE = 120;
 
 let currentIndex = 0;
+
+let viewerImages = [];
+let viewerSlide = 0;
 
 const grid =
   document.getElementById("snapshot-grid");
@@ -273,13 +352,13 @@ async function loadSnapshots() {
     "{{ site.baseurl }}/data/snapshots.json"
   );
 
-    snapshots = await response.json();
+  snapshots = await response.json();
 
-    snapshots.sort(
-      (a, b) => (b.priority || 0) - (a.priority || 0)
-    );
+  snapshots.sort(
+    (a, b) => (b.priority || 0) - (a.priority || 0)
+  );
 
-    renderNextPage();
+  renderNextPage();
 }
 
 function renderNextPage() {
@@ -337,6 +416,31 @@ function createCard(entry) {
       ? entry.images
       : ["__default__"];
 
+  const slides = [];
+  const dotsList = [];
+
+  function setSlide(index) {
+
+    currentSlide =
+      (index + images.length) % images.length;
+
+    slides.forEach(s =>
+      s.classList.remove("active")
+    );
+
+    dotsList.forEach(d =>
+      d.classList.remove("active")
+    );
+
+    slides[currentSlide]
+      .classList.add("active");
+
+    if (dotsList[currentSlide]) {
+      dotsList[currentSlide]
+        .classList.add("active");
+    }
+  }
+
   images.forEach((imageName, index) => {
 
     const slide =
@@ -347,6 +451,8 @@ function createCard(entry) {
     if (index === 0) {
       slide.classList.add("active");
     }
+
+    slides.push(slide);
 
     const img =
       document.createElement("img");
@@ -379,7 +485,7 @@ function createCard(entry) {
         return;
       }
 
-      openViewer(imageName, entry.text);
+      openViewer(images, currentSlide, entry.text);
     };
 
     slide.appendChild(img);
@@ -388,6 +494,35 @@ function createCard(entry) {
   });
 
   if (images.length > 1) {
+
+    const leftBtn =
+      document.createElement("button");
+
+    leftBtn.className =
+      "snapshot-arrow left";
+
+    leftBtn.innerHTML = "‹";
+
+    leftBtn.onclick = e => {
+      e.stopPropagation();
+      setSlide(currentSlide - 1);
+    };
+
+    const rightBtn =
+      document.createElement("button");
+
+    rightBtn.className =
+      "snapshot-arrow right";
+
+    rightBtn.innerHTML = "›";
+
+    rightBtn.onclick = e => {
+      e.stopPropagation();
+      setSlide(currentSlide + 1);
+    };
+
+    imageWrap.appendChild(leftBtn);
+    imageWrap.appendChild(rightBtn);
 
     const dots =
       document.createElement("div");
@@ -406,38 +541,19 @@ function createCard(entry) {
       }
 
       dot.onclick = () => {
-
-        currentSlide = index;
-
-        const slides =
-          imageWrap.querySelectorAll(
-            ".snapshot-slide"
-          );
-
-        const allDots =
-          dots.querySelectorAll(
-            ".snapshot-dot"
-          );
-
-        slides.forEach(s =>
-          s.classList.remove("active")
-        );
-
-        allDots.forEach(d =>
-          d.classList.remove("active")
-        );
-
-        slides[currentSlide]
-          .classList.add("active");
-
-        allDots[currentSlide]
-          .classList.add("active");
+        setSlide(index);
       };
+
+      dotsList.push(dot);
 
       dots.appendChild(dot);
     });
 
     imageWrap.appendChild(dots);
+
+    setInterval(() => {
+      setSlide(currentSlide + 1);
+    }, 3500);
   }
 
   const text =
@@ -451,17 +567,53 @@ function createCard(entry) {
 
   return card;
 }
-function openViewer(imageName, text) {
+
+function openViewer(images, startIndex, text) {
+
+  viewerImages = images;
+  viewerSlide = startIndex;
 
   viewer.classList.remove("hidden");
 
-  viewerImage.src =
-    `{{ site.baseurl }}/assets/snapshots/full/${imageName}`;
+  updateViewerImage();
 
   viewerText.innerText = text;
 
   document.body.style.overflow = "hidden";
 }
+
+function updateViewerImage() {
+
+  const imageName =
+    viewerImages[viewerSlide];
+
+  viewerImage.src =
+    `{{ site.baseurl }}/assets/snapshots/full/${imageName}`;
+}
+
+function viewerNext() {
+
+  viewerSlide =
+    (viewerSlide + 1) %
+    viewerImages.length;
+
+  updateViewerImage();
+}
+
+function viewerPrev() {
+
+  viewerSlide =
+    (viewerSlide - 1 + viewerImages.length) %
+    viewerImages.length;
+
+  updateViewerImage();
+}
+
+document.getElementById("viewerNext")
+  .onclick = viewerNext;
+
+document.getElementById("viewerPrev")
+  .onclick = viewerPrev;
 
 function closeViewerFn() {
 
@@ -487,6 +639,17 @@ viewer.onclick = e => {
 
 window.addEventListener("keydown", e => {
 
+  if (!viewer.classList.contains("hidden")) {
+
+    if (e.key === "ArrowRight") {
+      viewerNext();
+    }
+
+    if (e.key === "ArrowLeft") {
+      viewerPrev();
+    }
+  }
+
   if (e.key === "Escape") {
     closeViewerFn();
   }
@@ -495,4 +658,5 @@ window.addEventListener("keydown", e => {
 loadMoreBtn.onclick = renderNextPage;
 
 loadSnapshots();
+
 </script>
