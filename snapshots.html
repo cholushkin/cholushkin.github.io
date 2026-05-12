@@ -92,6 +92,9 @@ permalink: /snapshots/
   transition: opacity 0.15s;
 
   backdrop-filter: blur(4px);
+
+  font-size: 26px;
+  line-height: 1;
 }
 
 .snapshot-images:hover .snapshot-arrow {
@@ -158,23 +161,39 @@ permalink: /snapshots/
 }
 
 .snapshot-dot {
+  position: relative;
+
   width: 14px;
   height: 14px;
 
   border-radius: 999px;
 
-  background: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.28);
 
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.16);
+
+  overflow: hidden;
 
   cursor: pointer;
-
-  transition: all 0.15s;
 }
 
-.snapshot-dot.active {
+.snapshot-dot::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+
   background: white;
-  transform: scale(1.15);
+
+  transform: scale(0);
+
+  transition: transform 0.35s ease;
+}
+
+.snapshot-dot.active::after {
+  transform: scale(1);
 }
 
 .snapshot-text {
@@ -299,7 +318,8 @@ permalink: /snapshots/
 
   color: white;
 
-  font-size: 22px;
+  font-size: 34px;
+  line-height: 1;
 
   cursor: pointer;
 
@@ -495,6 +515,17 @@ function createCard(entry) {
 
   if (images.length > 1) {
 
+    let autoTimer;
+
+    function restartAutoTimer() {
+
+      clearInterval(autoTimer);
+
+      autoTimer = setInterval(() => {
+        setSlide(currentSlide + 1);
+      }, 3500);
+    }
+
     const leftBtn =
       document.createElement("button");
 
@@ -504,8 +535,12 @@ function createCard(entry) {
     leftBtn.innerHTML = "‹";
 
     leftBtn.onclick = e => {
+
       e.stopPropagation();
+
       setSlide(currentSlide - 1);
+
+      restartAutoTimer();
     };
 
     const rightBtn =
@@ -517,8 +552,12 @@ function createCard(entry) {
     rightBtn.innerHTML = "›";
 
     rightBtn.onclick = e => {
+
       e.stopPropagation();
+
       setSlide(currentSlide + 1);
+
+      restartAutoTimer();
     };
 
     imageWrap.appendChild(leftBtn);
@@ -541,7 +580,10 @@ function createCard(entry) {
       }
 
       dot.onclick = () => {
+
         setSlide(index);
+
+        restartAutoTimer();
       };
 
       dotsList.push(dot);
@@ -551,9 +593,7 @@ function createCard(entry) {
 
     imageWrap.appendChild(dots);
 
-    setInterval(() => {
-      setSlide(currentSlide + 1);
-    }, 3500);
+    restartAutoTimer();
   }
 
   const text =
