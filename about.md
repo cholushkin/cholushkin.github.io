@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-# <img src="{{ site.baseurl }}/assets/favicon.svg" width="28" style="vertical-align:-4px;"> About
+# <img src="{{ site.baseurl }}/assets/favicon.svg" width="64" style="vertical-align:-12px; background:transparent;"> About
 
 Hi, I’m Maxim.
 
