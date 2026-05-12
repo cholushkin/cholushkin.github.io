@@ -17,8 +17,8 @@ permalink: /snapshots/
 
     <button id="closeViewer" class="viewer-close">✕</button>
 
-    <button id="viewerPrev" class="viewer-arrow left">‹</button>
-    <button id="viewerNext" class="viewer-arrow right">›</button>
+    <button id="viewerPrev" class="viewer-arrow left"></button>
+    <button id="viewerNext" class="viewer-arrow right"></button>
 
     <img id="viewerImage" src="">
 
@@ -74,8 +74,6 @@ permalink: /snapshots/
 
   background: rgba(0,0,0,0.45);
 
-  color: white;
-
   cursor: pointer;
 
   z-index: 6;
@@ -91,9 +89,6 @@ permalink: /snapshots/
   justify-content: center;
 
   padding: 0;
-
-  font-size: 28px;
-  line-height: 1;
 }
 
 .snapshot-images:hover .snapshot-arrow {
@@ -106,6 +101,21 @@ permalink: /snapshots/
 
 .snapshot-arrow.right {
   right: 10px;
+}
+
+.arrow-svg {
+  width: 18px;
+  height: 18px;
+
+  stroke: white;
+  stroke-width: 2.6;
+
+  fill: none;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  display: block;
 }
 
 .snapshot-slide {
@@ -169,8 +179,6 @@ permalink: /snapshots/
 
   background: rgba(255,255,255,0.22);
 
-  border: 1px solid rgba(255,255,255,0.12);
-
   overflow: visible;
 
   cursor: pointer;
@@ -187,11 +195,16 @@ permalink: /snapshots/
   width: 18px;
   height: 18px;
 
+  margin-left: -9px;
+  margin-top: -9px;
+
   border-radius: 999px;
 
   background: white;
 
-  transform: translate(-50%, -50%) scale(0);
+  transform: scale(0);
+
+  transform-origin: center center;
 
   will-change: transform;
 }
@@ -315,8 +328,6 @@ permalink: /snapshots/
 
   background: rgba(255,255,255,0.12);
 
-  color: white;
-
   cursor: pointer;
 
   z-index: 5;
@@ -326,9 +337,13 @@ permalink: /snapshots/
   justify-content: center;
 
   padding: 0;
+}
 
-  font-size: 38px;
-  line-height: 1;
+.viewer-arrow .arrow-svg {
+  width: 24px;
+  height: 24px;
+
+  stroke-width: 2.4;
 }
 
 .viewer-arrow.left {
@@ -372,6 +387,22 @@ const viewerText =
 
 const closeViewer =
   document.getElementById("closeViewer");
+
+function createLeftArrowSVG() {
+  return `
+  <svg viewBox="0 0 24 24" class="arrow-svg">
+    <path d="M14 6 L8 12 L14 18" />
+  </svg>
+  `;
+}
+
+function createRightArrowSVG() {
+  return `
+  <svg viewBox="0 0 24 24" class="arrow-svg">
+    <path d="M10 6 L16 12 L10 18" />
+  </svg>
+  `;
+}
 
 async function loadSnapshots() {
 
@@ -465,8 +496,8 @@ function createCard(entry) {
 
       fill.style.transform =
         i === currentSlide
-          ? "translate(-50%, -50%) scale(1)"
-          : "translate(-50%, -50%) scale(0)";
+          ? "scale(1)"
+          : "scale(0)";
     });
   }
 
@@ -502,7 +533,7 @@ function createCard(entry) {
       }
 
       fill.style.transform =
-        `translate(-50%, -50%) scale(${scale})`;
+        `scale(${scale})`;
     });
 
     if (progress >= 1) {
@@ -586,7 +617,8 @@ function createCard(entry) {
     leftBtn.className =
       "snapshot-arrow left";
 
-    leftBtn.innerHTML = "‹";
+    leftBtn.innerHTML =
+      createLeftArrowSVG();
 
     leftBtn.onclick = e => {
 
@@ -603,7 +635,8 @@ function createCard(entry) {
     rightBtn.className =
       "snapshot-arrow right";
 
-    rightBtn.innerHTML = "›";
+    rightBtn.innerHTML =
+      createRightArrowSVG();
 
     rightBtn.onclick = e => {
 
@@ -636,8 +669,7 @@ function createCard(entry) {
         "snapshot-dot-fill";
 
       if (index === 0) {
-        fill.style.transform =
-          "translate(-50%, -50%) scale(1)";
+        fill.style.transform = "scale(1)";
       }
 
       fills.push(fill);
@@ -711,6 +743,12 @@ function viewerPrev() {
 
   updateViewerImage();
 }
+
+document.getElementById("viewerNext")
+  .innerHTML = createRightArrowSVG();
+
+document.getElementById("viewerPrev")
+  .innerHTML = createLeftArrowSVG();
 
 document.getElementById("viewerNext")
   .onclick = viewerNext;
