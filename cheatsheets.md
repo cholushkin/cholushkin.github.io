@@ -17,9 +17,9 @@ const cheatsheets = [
     thumbnail: "/assets/thumbs/easings.jpg"
   },
   {
-    title: "Unity FPS Controller",
-    url: "/cheatsheets/fps-demo/",
-    categories: ["unity", "gamedev"],
+    title: "My Coding Convention",
+    url: "https://github.com/cholushkin/coding-convention",
+    categories: ["convention", "coding", "documentation"],
     thumbnail: "/assets/thumbs/default.jpg"
   }
 ];
