@@ -3,7 +3,6 @@ layout: post
 title: "Windows Setup Shouldn't Be Manual"
 date: 2026-05-23
 categories: [projects]
-tags: [powershell, chocolatey, automation, projects]
 ---
 
 # Windows Setup Shouldn't Be Manual
