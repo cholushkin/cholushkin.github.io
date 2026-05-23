@@ -25,7 +25,7 @@ Then later you realize:
 
 So I made a small PowerShell bootstrap tool for myself:
 
-https://github.com/cholushkin/windows-update-software
+[https://github.com/cholushkin/windows-update-software](https://github.com/cholushkin/windows-update-software)
 
 <!--more-->
 
@@ -47,3 +47,4 @@ Example:
 .\install-packages.ps1
 .\install-packages.ps1 -Groups gamedev
 .\install-packages.ps1 -WhatIf
+```
