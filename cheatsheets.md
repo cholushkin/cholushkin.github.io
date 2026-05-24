@@ -18,7 +18,7 @@ const cheatsheets = [
   },
   {
     title: "My Dev Conventions",
-    url: "https://github.com/cholushkin/coding-convention",
+    url: "https://github.com/cholushkin/dev-conventions",
     categories: ["convention", "coding", "documentation"],
     thumbnail: "/assets/thumbs/dev-conventions.jpg"
   }
