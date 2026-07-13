@@ -7,6 +7,12 @@ categories: [articles]
 
 ![splash](/assets/blog/di-image.jpg)
 
+There is an excellent book on Dependency Injection that I genuinely recommend: Dependency Injection: Principles, Practices, and Patterns by Mark Seemann and Steven van Deursen.
+
+But if you're anything like me, you'd rather skip the endless real-world analogies about chefs making Bolognese sauce and get straight to the code.
+
+That's exactly what this article does. It distills what I believe every Unity developer needs to know about Dependency Injection into a practical, no-fluff guide. If your goal is writing clean, scalable Unity architecture, you can start here—and you probably won't need anything else.
+
 # Chapter 1: Dependency Injection as an Architectural Boundary
 
 When discussing Dependency Injection (DI) in modern Unity development, the conversation often gets stuck on the mechanics of syntax—specifically, passing an interface through a constructor to avoid using the `new` keyword. While true, this perspective is too narrow for large-scale game architecture. DI is not just a technique for managing instantiation; it is one of the primary mechanisms for enforcing strict architectural boundaries.
