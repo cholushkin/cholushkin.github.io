@@ -7,11 +7,11 @@ categories: [projects]
 
 A convenient productivity tool I developed for Unity developers that enables hardware-aware shortcuts across multiple physical keyboards. Create dedicated shortcut layouts for debugging, camera navigation, play controls, and custom editor tools while keeping your normal keyboard workflow intact. Each device is identified independently, allowing multiple keyboards, macro pads, and numpads to work simultaneously without input conflicts.
 
-![Setup Example](https://raw.githubusercontent.com/cholushkin/dev-reyboard-shortcuts/main/Documentation/SetupExample.jpg)
+![Setup Example](https://raw.githubusercontent.com/cholushkin/dev-keyboard-shortcuts/master/Documentation/SetupExample.jpg)
 
 ## 🚀 Check out the project on GitHub
 
-👉 **https://github.com/cholushkin/dev-reyboard-shortcuts**
+[👉 GitHub Repository](https://github.com/cholushkin/dev-keyboard-shortcuts) 
 
 <!--more-->
 
