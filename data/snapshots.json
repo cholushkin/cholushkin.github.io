@@ -1,5 +1,11 @@
 [
   {
+    "images": ["color-editor.jpg"],
+    "text": "Color-coded Project folders + a small Hierarchy extension = a much cleaner Unity workflow. It works especially well with a predefined project structure, where modules and core project folders always follow the same convention. Small improvements, but they save a surprising amount of time.",
+    "priority": 60
+  },
+  
+  {
     "images": ["tg.jpg", "tg-render2.jpg", "tg-render.jpg", "901524a5-41b4-4bd4-8a16-8402653d60e7.jpg"],
     "text": "TowerGenerator -> Render",
     "priority": 100
