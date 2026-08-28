@@ -134,6 +134,15 @@ nav a.active {
   margin: 20px 0;
 }
 
+/* Blog post cards vary a lot in excerpt length. A multi-column grid
+   stretches every card in a row to match the tallest one, which leaves
+   large empty gaps under shorter posts - so the post feed (home + category
+   archives) always renders single-column, unlike the more uniform
+   cheatsheets/sandbox/snapshot cards. */
+.post-grid {
+  grid-template-columns: 1fr;
+}
+
 .card {
   display: flex;
   flex-direction: column;

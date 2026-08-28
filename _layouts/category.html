@@ -7,7 +7,7 @@ layout: default
 
 {% assign cat_posts = site.categories[page.category] %}
 
-<div class="card-grid">
+<div class="card-grid post-grid">
   {% for post in cat_posts %}
     {% include post-card.html %}
   {% endfor %}
