@@ -1,0 +1,5 @@
+- title: Island Generator
+  url: /sandbox/islandgen/
+  description: Experiment in generating islands using masks, noise, syntex, and marching cubes.
+  thumbnail: /assets/thumbs/islandgen.jpg
+  tags: [terrain, procedural, marching-cubes, generation]

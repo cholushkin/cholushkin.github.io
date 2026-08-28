@@ -1,0 +1,21 @@
+<!--
+  Renders one post as a semantic card. Expects a `post` variable in scope
+  (works from a {% for post in ... %} loop, since Jekyll includes share the
+  parent's local scope). Single source of truth for how a post preview
+  looks, reused by the paginated home feed and every category archive page.
+-->
+<a class="card post-card" href="{{ post.url | relative_url }}">
+  <div>
+    <h3>{{ post.title }}</h3>
+    <small class="post-date">{{ post.date | date: "%Y-%m-%d" }}</small>
+    <div class="card-excerpt">
+      {{ post.excerpt }}
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="card-cta">Read post →</div>
+    <div class="card-tags">
+      {% for category in post.categories %}#{{ category }} {% endfor %}
+    </div>
+  </div>
+</a>

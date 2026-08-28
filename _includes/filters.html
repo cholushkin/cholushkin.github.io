@@ -1,0 +1,13 @@
+<!--
+  Renders filter links from `site.blog.filters` (see _config.yml).
+  "All" always links to the paginated home feed; every configured category
+  links to its static archive page (see thoughts.md / projects.md / etc).
+  Used by index.html and _layouts/category.html so filters never drift
+  out of sync between the two.
+-->
+<div id="filters">
+  <a href="{{ site.baseurl }}/" class="filter-link{% unless page.category %} active{% endunless %}">All</a>
+  {% for cat in site.blog.filters %}
+  <a href="{{ site.baseurl }}/{{ cat }}/" class="filter-link{% if page.category == cat %} active{% endif %}">{{ cat | capitalize }}</a>
+  {% endfor %}
+</div>

@@ -1,0 +1,18 @@
+---
+layout: default
+---
+<h1>#{{ page.category }}</h1>
+
+{% include filters.html %}
+
+{% assign cat_posts = site.categories[page.category] %}
+
+<div class="card-grid">
+  {% for post in cat_posts %}
+    {% include post-card.html %}
+  {% endfor %}
+</div>
+
+<div class="post-count">
+  {{ cat_posts | size }} post{% unless cat_posts.size == 1 %}s{% endunless %} tagged #{{ page.category }}
+</div>

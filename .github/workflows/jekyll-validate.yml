@@ -17,11 +17,7 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: "3.3"
-
-      - name: Install Jekyll
-        run: |
-          gem install bundler
-          gem install jekyll
+          bundler-cache: true
 
       - name: Build Site
-        run: jekyll build
+        run: bundle exec jekyll build

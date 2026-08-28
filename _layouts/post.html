@@ -1,95 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>{{ page.title }}</title>
+---
+layout: default
+---
+<article class="post">
+  <header class="post-header">
+    <h1>{{ page.title }}</h1>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 16px;
-      line-height: 1.6;
-      background: #eeeeee;
-    }
-
-    nav {
-      margin-bottom: 20px;
-    }
-
-    nav a {
-      margin-right: 12px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    article {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px solid #eee;
-    }
-    
-    article img {
-        max-width: 100%;
-        width: auto;
-        height: auto;
-        display: block;
-        margin: 24px auto;
-    }
-
-    a {
-      color: #0366d6;
-    }
-
-    small {
-      color: #666;
-    }
-  </style>
-</head>
-<body>
-
-<nav>
-  <a href="{{ site.baseurl }}/">Home</a>
-
-  <a href="{{ site.baseurl }}/?category=thoughts">
-    Thoughts
-  </a>
-
-  <a href="{{ site.baseurl }}/?category=projects">
-    Projects
-  </a>
-</nav>
-
-<article>
-  <h1>{{ page.title }}</h1>
-
-  <p>
-    <small>
-      {{ page.date | date: "%Y-%m-%d" }} —
-
-      {% for category in page.categories %}
-        <a href="{{ site.baseurl }}/{{ category }}/">
-          #{{ category }}
-        </a>
-      {% endfor %}
-    </small>
-  </p>
+    <p class="post-meta">
+      <small>
+        {{ page.date | date: "%Y-%m-%d" }} —
+        {% for category in page.categories %}
+          <a href="{{ site.baseurl }}/{{ category }}/">#{{ category }}</a>
+        {% endfor %}
+      </small>
+    </p>
+  </header>
 
   <hr>
 
   {{ content }}
 </article>
-
-</body>
-</html>

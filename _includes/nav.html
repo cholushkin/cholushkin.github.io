@@ -1,0 +1,7 @@
+<nav>
+  <a href="{{ site.baseurl }}/" class="{% if page.url == '/' or page.url contains '/page' or page.category %}active{% endif %}">Blog</a> |
+  <a href="{{ site.baseurl }}/cheatsheets/" class="{% if page.url contains '/cheatsheets' %}active{% endif %}">Cheatsheets</a> |
+  <a href="{{ site.baseurl }}/snapshots/" class="{% if page.url contains '/snapshots' %}active{% endif %}">Snapshots</a> |
+  <a href="{{ site.baseurl }}/sandbox/" class="{% if page.url contains '/sandbox' %}active{% endif %}">Sandbox</a> |
+  <a href="{{ site.baseurl }}/about/" class="{% if page.url contains '/about' %}active{% endif %}">About</a>
+</nav>

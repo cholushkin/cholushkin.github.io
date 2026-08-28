@@ -1,0 +1,32 @@
+title: Blog
+description: "Gameplay dev experiments, snapshots, sandbox & cheatsheets"
+baseurl: ""
+url: "https://cholushkin.github.io"
+
+markdown: kramdown
+excerpt_separator: "<!--more-->"
+
+plugins:
+  - jekyll-paginate
+
+paginate: 10
+paginate_path: "/page:num/"
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - readme.md
+  - node_modules
+
+# Site-wide content configuration.
+# Filters are NOT hardcoded in HTML/JS - they are driven from here so the
+# feed's filter links and the set of category archive pages always match.
+blog:
+  # Each entry becomes a filter link (see _includes/filters.html) AND a
+  # static archive page (see thoughts.md / projects.md / articles.md).
+  # To add a category: 1) add its slug here, 2) create a matching archive
+  # stub page with `layout: category` and `category: <slug>`.
+  filters:
+    - thoughts
+    - projects
+    - articles

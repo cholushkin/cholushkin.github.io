@@ -1,0 +1,9 @@
+- title: Easings
+  url: /cheatsheets/easings.html
+  categories: [javascript, basics]
+  thumbnail: /assets/thumbs/easings.jpg
+
+- title: My Dev Conventions
+  url: https://github.com/cholushkin/dev-conventions
+  categories: [convention, coding, documentation]
+  thumbnail: /assets/thumbs/dev-conventions.jpg
