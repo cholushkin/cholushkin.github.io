@@ -140,13 +140,17 @@ nav a.active {
    archives) always renders single-column, unlike the more uniform
    cheatsheets/sandbox/snapshot cards. */
 .post-grid {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .card {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  /* Force the flex container to shrink when needed */
+  min-width: 0;
+  word-wrap: break-word; /* Ensure long links or titles wrap safely */
 
   border: 1px solid #eee;
   border-radius: 10px;
@@ -574,4 +578,16 @@ nav a.active {
 
 .viewer-arrow.right {
   right: 20px;
+}
+
+@media (max-width: 600px) {
+  .markdown-body {
+    /* Reduce the 32px horizontal desktop padding to save screen space */
+    padding: 16px;
+  }
+
+  .card-grid {
+    /* Override the minmax(240px, 1fr) rule to force a single column and prevent overflow on non-blog pages */
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
