@@ -12,11 +12,18 @@ plugins:
 paginate: 10
 paginate_path: "/page:num/"
 
+# NOTE: this REPLACES Jekyll's built-in exclude defaults (they don't merge),
+# so the usual defaults are repeated here - dropping vendor/bundle would make
+# Jekyll try to build the Jekyll gem's own bundled files as site content.
 exclude:
   - Gemfile
   - Gemfile.lock
   - readme.md
   - node_modules
+  - vendor
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
 
 # Site-wide content configuration.
 # Filters are NOT hardcoded in HTML/JS - they are driven from here so the

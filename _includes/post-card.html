@@ -1,8 +1,8 @@
 <!--
   Renders one post as a semantic card. Expects a `post` variable in scope
-  (works from a {% for post in ... %} loop, since Jekyll includes share the
-  parent's local scope). Single source of truth for how a post preview
-  looks, reused by the paginated home feed and every category archive page.
+  (works from a loop over posts, since Jekyll includes share the parent's
+  local scope). Single source of truth for how a post preview looks,
+  reused by the paginated home feed and every category archive page.
 -->
 <a class="card post-card" href="{{ post.url | relative_url }}">
   <div>
