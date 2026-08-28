@@ -184,9 +184,21 @@ nav a.active {
 }
 
 .card-cta {
+  display: block;
   text-align: center;
   margin: 10px 0;
   font-weight: 500;
+}
+
+/* Only the post card's "Read post" is an actual <a> (cheatsheets/sandbox
+   cards are plain text inside their own single card-level <a>). */
+.card-cta-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-cta-link:hover {
+  text-decoration: underline;
 }
 
 .card-tags {
@@ -208,6 +220,21 @@ nav a.active {
 
 .post-meta a {
   color: inherit;
+}
+
+/* The post card is NOT a single big <a> (its excerpt can contain real
+   links - see _includes/post-card.html) - only the title links to the post. */
+.post-card-title {
+  color: inherit;
+  text-decoration: none;
+}
+
+.post-card-title:hover {
+  text-decoration: underline;
+}
+
+.card-excerpt a {
+  color: #0366d6;
 }
 
 /* ==========================================================================

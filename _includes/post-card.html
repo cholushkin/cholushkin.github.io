@@ -1,21 +1,26 @@
 <!--
-  Renders one post as a semantic card. Expects a `post` variable in scope
-  (works from a loop over posts, since Jekyll includes share the parent's
-  local scope). Single source of truth for how a post preview looks,
-  reused by the paginated home feed and every category archive page.
+  Renders one post as a card. Expects a `post` variable in scope (works from
+  a loop over posts, since Jekyll includes share the parent's local scope).
+
+  This is NOT wrapped in one big <a> around everything: post.excerpt is
+  rendered markdown and may itself contain real links. Nesting <a> inside
+  <a> is invalid HTML - browsers "recover" from it by splitting the element
+  into separate boxes, which breaks card layout (and breaks the inner link).
+  So only the title and "Read post" affordance are actual links; the
+  excerpt renders as plain markdown with working links of its own.
 -->
-<a class="card post-card" href="{{ post.url | relative_url }}">
-  <div>
-    <h3>{{ post.title }}</h3>
+<article class="card post-card">
+  <div class="post-card-body">
+    <h3><a class="post-card-title" href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
     <small class="post-date">{{ post.date | date: "%Y-%m-%d" }}</small>
     <div class="card-excerpt">
       {{ post.excerpt }}
     </div>
   </div>
   <div class="card-footer">
-    <div class="card-cta">Read post →</div>
+    <a class="card-cta card-cta-link" href="{{ post.url | relative_url }}">Read post →</a>
     <div class="card-tags">
       {% for category in post.categories %}#{{ category }} {% endfor %}
     </div>
   </div>
-</a>
+</article>
