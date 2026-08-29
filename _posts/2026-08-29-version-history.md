@@ -1,11 +1,12 @@
 ---
 layout: post
-title: "Easing Functions Cheatsheet (DoTween)"
+title: "Your game version history"
 date: 2026-08-29
 categories: [article]
 ---
 
-# Automate Your Unity Changelogs Like a Boss! 🚀
+> [!NOTE]
+> Automate Your Unity Changelogs Like a Boss! 🚀
 
 In my daily development workflow, I stick to a strict set of [coding conventions](https://github.com/cholushkin/dev-conventions). It's actually part of a much larger infrastructure designed for a small gamedev studio, which includes our custom `GameLib`, `rMVVM` architecture, and a bunch of handy modular tools.
 
