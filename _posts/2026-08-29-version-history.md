@@ -2,13 +2,12 @@
 layout: post
 title: "Your game version history"
 date: 2026-08-29
-categories: [article]
+categories: [project]
 ---
 
-> [!NOTE]
 > Automate Your Unity Changelogs Like a Boss! 🚀
 
-In my daily development workflow, I stick to a strict set of [coding conventions](https://github.com/cholushkin/dev-conventions). It's actually part of a much larger infrastructure designed for a small gamedev studio, which includes our custom `GameLib`, `rMVVM` architecture, and a bunch of handy modular tools.
+In my daily development workflow, I stick to a strict set of [coding conventions](https://github.com/cholushkin/dev-conventions). It's actually part of a much larger infrastructure designed for a small gamedev studio, which includes our custom [GameLib](https://github.com/cholushkin/gamelib), [rMVVM](https://github.com/cholushkin/rmvvm) architecture, and a bunch of handy modular tools.
 
 Today, I want to focus on a specific part of that ecosystem: our **Version History Management System**.
 
