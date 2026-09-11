@@ -1,9 +1,8 @@
 ---
-
 layout: default
 title: Ocean Crawler Upgrades
 permalink: /sandbox/ocean-crawler-upgrades/
--------------------------------------------
+---
 
 # Ocean Crawler — Upgrades Prototype
 
