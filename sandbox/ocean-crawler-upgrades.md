@@ -10,38 +10,20 @@ Interactive prototype exploring the upgrade and progression balance for Ocean Cr
 
 ## Demo
 
-<div style="margin-bottom:12px;">
-  <button
-    type="button"
-    onclick="document.getElementById('ocean-crawler-frame').requestFullscreen()">
-    ⛶ Fullscreen
-  </button>
-</div>
-
-<div style="
-  width:100vw;
-  margin-left:calc(50% - 50vw);
-  height:calc(100vh - 120px);
-  min-height:700px;
-">
+<div style="position:relative; padding-bottom:56%; height:0;">
   <iframe
-    id="ocean-crawler-frame"
     src="https://cholushkin.github.io/ocean-crawler-upgrades-proto/"
-    allow="fullscreen"
-    style="
-      width:100%;
-      height:100%;
-      border:none;
-    ">
+    style="position:absolute; top:0; left:0; width:100%; height:100%; border:none; border-radius:8px;">
   </iframe>
 </div>
 
-👉 [Full demo ↗](https://cholushkin.github.io/ocean-crawler-upgrades-proto/)  
+<p style="margin-top:12px;">
+  <a href="https://cholushkin.github.io/ocean-crawler-upgrades-proto/" target="_blank" rel="noopener">
+    ▶ Run Fullscreen ↗
+  </a>
+</p>
+
 👉 [Demo repo ↗](https://github.com/cholushkin/ocean-crawler-upgrades-proto)
-
-## Project Showcase
-
-A functional UI prototype for **Ocean Crawler**, focused on designing and testing how a complex upgrade system can be presented to the player. The prototype combines interaction design, progression logic, and modular data structures to explore a scalable foundation for the game's upgrade system.
 
 **Design & Technical Focus:**
 - Upgrade tree and progression design
