@@ -10,10 +10,29 @@ Interactive browser-based procedural island generator exploring a modular terrai
 
 ## Demo
 
-<div style="width:100%; height:clamp(600px, 80vh, 900px);">
-  <iframe 
+<div style="margin-bottom:12px;">
+  <button
+    type="button"
+    onclick="document.getElementById('island-generator-frame').requestFullscreen()">
+    ⛶ Fullscreen
+  </button>
+</div>
+
+<div style="
+  width:100vw;
+  margin-left:calc(50% - 50vw);
+  height:calc(100vh - 120px);
+  min-height:700px;
+">
+  <iframe
+    id="island-generator-frame"
     src="https://cholushkin.github.io/island-generator-prototype-io"
-    style="width:100%; height:100%; border:none; border-radius:8px;">
+    allow="fullscreen"
+    style="
+      width:100%;
+      height:100%;
+      border:none;
+    ">
   </iframe>
 </div>
 
