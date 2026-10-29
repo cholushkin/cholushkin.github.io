@@ -3,7 +3,7 @@ layout: post
 title: "The New Development Paradigm"
 date: 2026-08-29
 categories: [thoughts]
-
+---
 
 # 🚀 The New Development Paradigm: From Writing Code to Orchestrating Decisions
 
