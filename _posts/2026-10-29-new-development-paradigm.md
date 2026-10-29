@@ -22,8 +22,7 @@ This transformation can be understood through four interconnected paradigms.
 ![splash](/assets/blog/orcestration.jpg)
 
 
----<!--more-->
-
+<!--more-->
 ---
 
 ## 🏗️ 1. From Writing Code to Managing Complexity
@@ -36,7 +35,7 @@ AI changes this equation. Developers can delegate routine implementation, toolin
 
 In this sense, **code generation is becoming a commodity, while sound engineering judgment is becoming more valuable**.
 
-But generating code cheaply is not the same as maintaining a system cheaply.
+Generating code cheaply is not the same as maintaining a system cheaply.
 
 AI can produce individually functional components that fail to work together coherently. This creates a *Frankenstein effect*: software assembled from disconnected solutions that looks impressive in a demo but becomes fragile as complexity grows.
 
@@ -108,11 +107,11 @@ Iterative development and early prototyping are not new concepts. AI simply make
 
 **Traditional workflow:**
 
-Idea → Design → Extended Implementation → Testing → Results
+```Idea → Design → Extended Implementation → Testing → Results```
 
 **AI-accelerated workflow:**
 
-Hypothesis → Rapid Prototype → Validation → Analysis → Next Iteration
+```Hypothesis → Rapid Prototype → Validation → Analysis → Next Iteration```
 
 The real advantage is not the amount of code produced. It is the reduced time between an assumption and meaningful feedback.
 
